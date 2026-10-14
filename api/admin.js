@@ -68,6 +68,7 @@ module.exports = async (req, res) => {
       WHERE created_at >= ${since}
         AND event_type IN ('project_expand', 'project_read')
         AND metadata->>'project' IS NOT NULL
+        AND metadata->>'project' NOT LIKE '%TEST%'
       GROUP BY metadata->>'project'
       ORDER BY reads DESC, expands DESC`;
 
