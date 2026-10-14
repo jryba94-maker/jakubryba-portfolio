@@ -619,13 +619,13 @@
           </p>
           <div class="actions">
             <a class="btn primary" href="#projekty">Zobacz projekty ↓</a
-            ><a class="btn" href="mailto:jryba.94@gmail.com">Napisz do mnie</a
-            ><a class="btn" href="https://www.linkedin.com/in/jakub-ryba-9045101a2" target="_blank" rel="noopener">LinkedIn ↗</a
+            ><a class="btn" data-track="email" href="mailto:jryba.94@gmail.com">Napisz do mnie</a
+            ><a class="btn" data-track="linkedin" href="https://www.linkedin.com/in/jakub-ryba-9045101a2" target="_blank" rel="noopener">LinkedIn ↗</a
             ><a
               class="btn"
               href="/Jakub_Ryba_CV_Inzynier_Produkcji_METAL_GUM.pdf"
               download
-              >Pobierz CV PDF ↓</a
+              data-track="cv">Pobierz CV PDF ↓</a
             >
           </div>
         </div>
@@ -1063,12 +1063,63 @@
           <p>Zielona Góra, Polska</p>
         </div>
         <div class="contact-links">
-          <a href="mailto:jryba.94@gmail.com">jryba.94@gmail.com</a
-          ><a href="tel:+48534121777">+48 534 121 777</a
-          ><a href="https://www.linkedin.com/in/jakub-ryba-9045101a2" target="_blank" rel="noopener">LinkedIn ↗</a
+          <a data-track="email" href="mailto:jryba.94@gmail.com">jryba.94@gmail.com</a
+          ><a data-track="phone" href="tel:+48534121777">+48 534 121 777</a
+          ><a data-track="linkedin" href="https://www.linkedin.com/in/jakub-ryba-9045101a2" target="_blank" rel="noopener">LinkedIn ↗</a
           ><span>Jakub Ryba · Inżynier Produkcji</span>
         </div>
       </div>
     </footer>
+    <script>
+      (() => {
+        const key = "jr_portfolio_session";
+        let sessionId = localStorage.getItem(key);
+        if (!sessionId) {
+          sessionId = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+          localStorage.setItem(key, sessionId);
+        }
+        let maxScroll = 0;
+        let activeSeconds = 0;
+        let lastActive = Date.now();
+        let lastSent = 0;
+
+        const send = (event, extra = {}) => {
+          const body = JSON.stringify({
+            event,
+            sessionId,
+            pathname: location.pathname,
+            scrollDepth: maxScroll,
+            activeSeconds,
+            referrer: document.referrer,
+            ...extra,
+          });
+          fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true }).catch(() => {});
+        };
+        const updateActivity = () => {
+          if (!document.hidden && Date.now() - lastActive < 30000) activeSeconds += 1;
+          if (activeSeconds - lastSent >= 20) { lastSent = activeSeconds; send("engagement"); }
+        };
+        const activity = () => { lastActive = Date.now(); };
+        const scroll = () => {
+          const max = document.documentElement.scrollHeight - innerHeight;
+          if (max > 0) maxScroll = Math.max(maxScroll, Math.round((scrollY / max) * 100));
+        };
+
+        send("page_view");
+        scroll();
+        addEventListener("scroll", scroll, { passive: true });
+        ["pointerdown", "keydown", "touchstart"].forEach((name) => addEventListener(name, activity, { passive: true }));
+        setInterval(updateActivity, 1000);
+        addEventListener("visibilitychange", () => { if (document.hidden) send("engagement"); });
+        addEventListener("pagehide", () => send("engagement"));
+        document.querySelectorAll("[data-track]").forEach((link) => link.addEventListener("click", () => {
+          const target = link.dataset.track;
+          send(target === "cv" ? "cv_download" : "outbound_click", { target });
+        }));
+        document.querySelectorAll("details.case").forEach((item) => item.addEventListener("toggle", () => {
+          if (item.open) send("project_expand", { target: "project" });
+        }));
+      })();
+    </script>
   </body>
 </html>

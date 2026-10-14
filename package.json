@@ -1,0 +1,12 @@
+{
+  "name": "jakubryba-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@clerk/backend": "^2.22.0",
+    "@neondatabase/serverless": "^1.0.1"
+  }
+}
