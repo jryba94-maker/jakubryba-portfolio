@@ -9,8 +9,8 @@ let schemaPromise;
 async function ensureSchema() {
   if (!schemaPromise) {
     const sql = database();
-    schemaPromise = Promise.all([
-      sql`CREATE TABLE IF NOT EXISTS portfolio_events (
+    schemaPromise = (async () => {
+      await sql`CREATE TABLE IF NOT EXISTS portfolio_events (
         id BIGSERIAL PRIMARY KEY,
         session_id TEXT NOT NULL,
         event_type TEXT NOT NULL,
@@ -19,10 +19,10 @@ async function ensureSchema() {
         scroll_depth SMALLINT,
         active_seconds INTEGER,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-      )`,
-      sql`CREATE INDEX IF NOT EXISTS portfolio_events_created_at_idx ON portfolio_events (created_at DESC)`,
-      sql`CREATE INDEX IF NOT EXISTS portfolio_events_session_idx ON portfolio_events (session_id, created_at DESC)`
-    ]);
+      )`;
+      await sql`CREATE INDEX IF NOT EXISTS portfolio_events_created_at_idx ON portfolio_events (created_at DESC)`;
+      await sql`CREATE INDEX IF NOT EXISTS portfolio_events_session_idx ON portfolio_events (session_id, created_at DESC)`;
+    })();
   }
   return schemaPromise;
 }
