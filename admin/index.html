@@ -20,7 +20,6 @@
         <section class="panel"><h2>Ostatnia aktywność</h2><div style="overflow:auto"><table><thead><tr><th>Zdarzenie</th><th>Szczegół</th><th>Postęp</th><th>Kiedy</th></tr></thead><tbody id="recent"></tbody></table></div></section>
       </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
     <script>
       const login = document.querySelector('#login'), app = document.querySelector('#app'); let clerk, days = 30;
       const fmt = (seconds) => seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
@@ -34,7 +33,9 @@
         const high = Math.max(...data.daily.map(x=>x.visits),1); document.querySelector('#chart').innerHTML=data.daily.map(x=>`<div class="bar" style="height:${Math.max(5,x.visits/high*100)}%" title="${x.day}: ${x.visits} wizyt"><span>${x.day}</span></div>`).join('') || '<p>Brak danych — odwiedź stronę, aby rozpocząć pomiar.</p>';
         document.querySelector('#recent').innerHTML=data.recent.map(x=>`<tr><td>${x.event_type}</td><td>${x.metadata?.target||x.pathname}</td><td>${x.scroll_depth ?? '—'}%</td><td>${new Date(x.created_at).toLocaleString('pl-PL')}</td></tr>`).join('') || '<tr><td colspan="4">Brak zdarzeń w tym okresie.</td></tr>';
       }
-      async function init(){try{const config=await (await fetch('/api/config')).json(); clerk=new Clerk(config.publishableKey); await clerk.load(); if(!clerk.user){login.querySelector('h1').textContent='Zaloguj się'; const slot=document.createElement('div'); slot.style.marginTop='18px'; login.append(slot); clerk.mountSignIn(slot,{forceRedirectUrl:'/admin'}); return;} login.hidden=true; app.hidden=false; await loadData(); document.querySelectorAll('[data-days]').forEach(b=>b.onclick=()=>{days=Number(b.dataset.days);document.querySelectorAll('[data-days]').forEach(x=>x.classList.toggle('active',x===b));loadData();});document.querySelector('#signout').onclick=()=>clerk.signOut({redirectUrl:'/admin'});}catch(e){login.innerHTML=`<p class="error">Nie udało się uruchomić panelu. ${e.message}</p>`}}init();
+      function frontendApi(key){const encoded=key.split('_').slice(2).join('_').replace(/-/g,'+').replace(/_/g,'/');return atob(encoded).replace(/\$$/,'')}
+      function loadClerk(key){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=`https://${frontendApi(key)}/npm/@clerk/clerk-js@5/dist/clerk.browser.js`;s.crossOrigin='anonymous';s.onload=resolve;s.onerror=()=>reject(new Error('Nie udało się załadować bezpiecznego logowania.'));document.head.append(s)})}
+      async function init(){try{const config=await (await fetch('/api/config')).json();await loadClerk(config.publishableKey); clerk=new window.Clerk(config.publishableKey); await clerk.load(); if(!clerk.user){login.querySelector('h1').textContent='Zaloguj się'; const slot=document.createElement('div'); slot.style.marginTop='18px'; login.append(slot); clerk.mountSignIn(slot,{forceRedirectUrl:'/admin'}); return;} login.hidden=true; app.hidden=false; await loadData(); document.querySelectorAll('[data-days]').forEach(b=>b.onclick=()=>{days=Number(b.dataset.days);document.querySelectorAll('[data-days]').forEach(x=>x.classList.toggle('active',x===b));loadData();});document.querySelector('#signout').onclick=()=>clerk.signOut({redirectUrl:'/admin'});}catch(e){login.innerHTML=`<p class="error">Nie udało się uruchomić panelu. ${e.message}</p>`}}init();
     </script>
   </body>
 </html>
