@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jakub Ryba - inżynier produkcji, Lean, optymalizacja procesów i wdrożenia."
+    />
+    <link rel="icon" type="image/svg+xml" href="/jr-mark.svg" />
+    <meta name="theme-color" content="#0e1f33" />
+    <title>Jakub Ryba | Inżynier Produkcji</title>
+    <style>
+      :root {
+        --ink: #0e1f33;
+        --muted: #627083;
+        --line: #d9e1e8;
+        --paper: #f6f8fa;
+        --blue: #1a78b7;
+        --accent: #43c7ad;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font:
+          16px/1.55 Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        width: min(1160px, calc(100% - 40px));
+        margin: auto;
+      }
+      nav {
+        height: 76px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        font-size: 20px;
+      }
+      .brand span {
+        color: var(--blue);
+      }
+      .navlinks {
+        display: flex;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .navlinks a:hover {
+        color: var(--blue);
+      }
+      .hero {
+        min-height: 620px;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1.5fr 0.85fr;
+        gap: 68px;
+        padding: 78px 0 94px;
+      }
+      .eyebrow,
+      .kicker {
+        color: var(--blue);
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: clamp(46px, 7.2vw, 88px);
+        line-height: 0.98;
+        letter-spacing: -0.07em;
+        margin: 14px 0 26px;
+        max-width: 850px;
+      }
+      h1 em {
+        font-style: normal;
+        color: var(--blue);
+      }
+      .lead {
+        font-size: 20px;
+        max-width: 680px;
+        color: #3d4c5c;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--ink);
+        font-weight: 700;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+      .btn.primary {
+        background: var(--ink);
+        color: #fff;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .card {
+        background: var(--ink);
+        color: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 16px 16px 0 #d6e8f3;
+      }
+      .portrait {
+        width: 100%;
+        height: 315px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        filter: contrast(1.02);
+      }
+      .card-copy {
+        padding: 22px 26px 27px;
+      }
+      .card p {
+        color: #b8c9d6;
+        margin: 0;
+      }
+      .card strong {
+        font-size: 18px;
+      }
+      section {
+        padding: 92px 0;
+        border-top: 1px solid var(--line);
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+        margin-bottom: 42px;
+      }
+      h2 {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 52px);
+        line-height: 1;
+        letter-spacing: -0.055em;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 610px;
+      }
+      .impact {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--line);
+        background: white;
+      }
+      .impact div {
+        padding: 28px;
+        border-right: 1px solid var(--line);
+      }
+      .impact div:last-child {
+        border: 0;
+      }
+      .impact b {
+        display: block;
+        color: var(--blue);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 9px;
+      }
+      .impact span {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+      .cases {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .case {
+        background: white;
+        padding: 29px;
+        border: 1px solid var(--line);
+        min-height: 240px;
+        transition: 0.2s;
+      }
+      .case:hover {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+      }
+      .num {
+        color: var(--blue);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      h3 {
+        margin: 31px 0 9px;
+        font-size: 23px;
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+      }
+      .case p {
+        color: var(--muted);
+        margin: 0;
+      }
+      .timeline {
+        position: relative;
+        margin-left: 12px;
+      }
+      .timeline:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 1px;
+        background: var(--line);
+      }
+      .role {
+        position: relative;
+        padding: 0 0 36px 33px;
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 24px;
+      }
+      .role:before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 7px;
+        width: 9px;
+        height: 9px;
+        border-radius: 99px;
+        background: var(--blue);
+      }
+      .period {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .role h3 {
+        margin: 0 0 3px;
+      }
+      .company {
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .role p {
+        color: var(--muted);
+        margin: 9px 0 0;
+        max-width: 700px;
+      }
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .skill {
+        padding: 18px;
+        background: white;
+        border: 1px solid var(--line);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      footer {
+        background: var(--ink);
+        color: white;
+        padding: 72px 0;
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 20px;
+      }
+      footer h2 {
+        max-width: 560px;
+      }
+      footer p {
+        color: #b8c9d6;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        justify-content: end;
+      }
+      .contact-links a {
+        border-bottom: 1px solid #53708b;
+        padding-bottom: 4px;
+      }
+      @media (max-width: 760px) {
+        .wrap {
+          width: min(100% - 32px, 1160px);
+        }
+        .navlinks {
+          display: none;
+        }
+        .hero,
+        .section-head,
+        .contact {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .hero {
+          padding: 65px 0;
+        }
+        .card {
+          min-height: 260px;
+        }
+        .impact,
+        .cases,
+        .skills {
+          grid-template-columns: 1fr;
+        }
+        .impact div {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .impact div:last-child {
+          border-bottom: 0;
+        }
+        .role {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .period {
+          font-weight: 700;
+        }
+        section {
+          padding: 65px 0;
+        }
+      }
+      /* Zwarty układ: szybkie skanowanie treści i mniej pustej przestrzeni. */
+      .hero {
+        min-height: 560px;
+        gap: 54px;
+        padding: 62px 0 72px;
+      }
+      section {
+        padding: 66px 0;
+      }
+      .section-head {
+        grid-template-columns: minmax(460px, 1.1fr) minmax(0, 1.35fr);
+        gap: 44px;
+        margin-bottom: 28px;
+      }
+      .section-head h2 {
+        font-size: clamp(36px, 3.8vw, 48px);
+        max-width: 540px;
+      }
+      .section-head p {
+        padding-top: 30px;
+        max-width: 680px;
+      }
+      .impact div {
+        padding: 22px 24px;
+      }
+      .impact span {
+        font-size: 16px;
+      }
+      .cases {
+        gap: 14px;
+      }
+      .case {
+        min-height: 0;
+        padding: 24px;
+      }
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 21px;
+      }
+      .role {
+        padding: 0 0 26px 33px;
+      }
+      .skills {
+        gap: 8px;
+      }
+      .skill {
+        padding: 14px;
+      }
+      footer {
+        padding: 54px 0;
+      }
+      .workflow {
+        padding: 54px 0;
+      }
+      .workflow-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 36px;
+        align-items: end;
+        margin-bottom: 24px;
+      }
+      .workflow-head h2 {
+        margin: 7px 0 0;
+        font-size: clamp(32px, 3.8vw, 48px);
+        line-height: 1;
+        letter-spacing: -0.055em;
+      }
+      .workflow-head p {
+        max-width: 480px;
+        margin: 0;
+        color: var(--muted);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line);
+        background: white;
+      }
+      .step {
+        padding: 20px;
+        border-right: 1px solid var(--line);
+      }
+      .step:last-child {
+        border: 0;
+      }
+      .step b {
+        display: block;
+        color: var(--blue);
+        font-size: 12px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+      .step span {
+        font-weight: 750;
+        line-height: 1.22;
+        display: block;
+      }
+      .case p + p {
+        margin-top: 10px;
+      }
+      .case p b {
+        color: var(--ink);
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .product {
+        background: white;
+        border: 1px solid var(--line);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        min-height: 250px;
+        transition: 0.2s;
+      }
+      .product:hover {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+      }
+      .product h3 {
+        margin: 17px 0 10px;
+      }
+      .product p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .product-links {
+        margin-top: auto;
+        padding-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .product-links a {
+        color: var(--blue);
+        font-weight: 750;
+        font-size: 13px;
+        border-bottom: 1px solid #9fc6df;
+      }
+      .product-links a:hover {
+        color: var(--ink);
+      }
+      .employer {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .employer summary {
+        cursor: pointer;
+        color: var(--blue);
+        font-weight: 750;
+        width: max-content;
+      }
+      .employer summary:hover {
+        color: var(--ink);
+      }
+      .employer-info {
+        margin-top: 10px;
+        padding: 13px 15px;
+        border-left: 2px solid var(--accent);
+        background: #f2f7fa;
+        line-height: 1.5;
+      }
+      .employer-info b {
+        color: var(--ink);
+      }
+      @media (max-width: 760px) {
+        .hero {
+          min-height: 0;
+          padding: 52px 0;
+        }
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .section-head p {
+          padding-top: 0;
+        }
+        .products {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 760px) {
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .step {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .step:last-child {
+          border-bottom: 0;
+        }
+        .workflow-head {
+          display: block;
+        }
+        .workflow-head p {
+          margin-top: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#start">JAKUB <span>RYBA</span></a>
+        <div class="navlinks">
+          <a href="#o-mnie">Profil</a><a href="#projekty">Projekty</a
+          ><a href="#produkty">Produkty</a><a href="#droga">Doświadczenie</a><a href="#kontakt">Kontakt</a>
+        </div>
+      </nav>
+    </div>
+    <main id="start">
+      <div class="wrap hero">
+        <div>
+          <div class="eyebrow">Inżynier produkcji / Lean / Wdrożenia</div>
+          <h1>Od konstrukcji produktu po <em>efektywność produkcji.</em></h1>
+          <p class="lead">
+            Łączę ponad 9 lat doświadczenia inżynierskiego z praktyką w
+            planowaniu, optymalizacji kosztów i wdrażaniu rozwiązań, które
+            działają w rzeczywistych warunkach produkcyjnych.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#projekty">Zobacz projekty ↓</a
+            ><a class="btn" href="mailto:jryba.94@gmail.com">Napisz do mnie</a
+            ><a
+              class="btn"
+              href="https://jakub-ryba-inzynier-produkcji.fiszy.chatgpt.site/assets/Jakub_Ryba_CV_Inzynier_Produkcji_METAL_GUM.pdf"
+              download
+              >Pobierz CV PDF ↓</a
+            >
+          </div>
+        </div>
+        <aside class="card">
+          <img
+            class="portrait"
+            src="assets/Profesjonalny%20portret%20biznesowy%20m%C4%99%C5%BCczyzny.png"
+            alt="Jakub Ryba"
+          />
+          <div class="card-copy">
+            <p>Obszary, w których pracuję</p>
+            <strong
+              >Produkcja · Lean · Planowanie<br />Koszty · Automatyzacja</strong
+            >
+          </div>
+        </aside>
+      </div>
+      <section id="o-mnie">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">01 / profil</div>
+              <h2>Od pomysłu do stabilnej produkcji.</h2>
+            </div>
+            <p>
+              Ponad 9 lat w firmach produkcyjnych. Pracowałem jako konstruktor,
+              inżynier R&amp;D, specjalista od planowania i Product Manager.
+              Dzięki temu widzę proces od dokumentacji i stanowiska pracy aż po
+              koszt, zapas i wynik biznesowy.
+            </p>
+          </div>
+          <div class="impact">
+            <div>
+              <b>Lean</b
+              ><span>Eliminacja marnotrawstw i upraszczanie portfolio</span>
+            </div>
+            <div>
+              <b>Przepływ</b
+              ><span>Planowanie, wykorzystanie mocy i zapasów</span>
+            </div>
+            <div>
+              <b>Zmiana</b
+              ><span>Łączę zarząd, produkcję i zespoły techniczne</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="jak-pracuje" class="workflow">
+        <div class="wrap">
+          <div class="workflow-head">
+            <div>
+              <div class="kicker">02 / podejście</div>
+              <h2>Jak przeprowadzam zmianę.</h2>
+            </div>
+            <p>
+              Łączę analizę procesu z decyzjami możliwymi do wdrożenia na
+              hali.<br />Doprowadzam je do momentu, w którym działają.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <b>01 / Diagnoza</b><span>Proces, dane, ograniczenia</span>
+            </div>
+            <div class="step">
+              <b>02 / Decyzja</b><span>Rozwiązanie i priorytety</span>
+            </div>
+            <div class="step">
+              <b>03 / Wdrożenie</b
+              ><span>Ludzie, narzędzia, odpowiedzialność</span>
+            </div>
+            <div class="step">
+              <b>04 / Utrzymanie</b
+              ><span>Wynik, standard i dalsze usprawnienia</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="projekty">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">03 / praktyka</div>
+              <h2>Zmiany, które wdrażałem.</h2>
+            </div>
+            <p>
+              Nie traktuję optymalizacji jako prezentacji. Zaczynam od procesu i
+              danych, a kończę na rozwiązaniu, które jest zrozumiałe dla ludzi i
+              możliwe do utrzymania.
+            </p>
+          </div>
+          <div class="cases">
+            <article class="case">
+              <div class="num">01 / LUG LIGHT FACTORY</div>
+              <h3>Produkcja z dostępnych zasobów</h3>
+              <p>
+                <b>Problem:</b> ograniczony dostęp do komponentów zakupowych
+                mimo wysokiego stanu magazynu; system blokował zlecenia możliwe
+                do realizacji po kontrolowanej zmianie komponentów.
+              </p>
+              <p>
+                <b>Decyzja:</b> zaprojektowałem autorski system wspierany AI,
+                łączący otwarte zlecenia, dostępne komponenty i moduły
+                kontrolowanych „podmian” materiałowych.
+              </p>
+              <p>
+                <b>Efekt:</b> decyzje produkcyjne oparte na realnie dostępnych
+                zapasach oraz jasna identyfikacja ograniczeń elastyczności BOM-ów.
+              </p>
+            </article>
+            <article class="case">
+              <div class="num">02 / ROTOMETAL · ROTOPLUS</div>
+              <h3>Autorski system ERP dla produkcji</h3>
+              <p>
+                <b>Problem:</b> produkcja opierała się na kartkach i wiedzy
+                „w głowie” kierownika; brakowało wspólnego obrazu realizacji
+                zleceń, kosztów i obciążeń.
+              </p>
+              <p>
+                <b>Decyzja:</b> stworzyłem i koordynowałem wdrożenie RotoPlus —
+                autorskiego systemu ERP dla ponad 100 użytkowników, od danych
+                z hali i magazynu po handel oraz dashboard zarządczy.
+              </p>
+              <p>
+                <b>Efekt:</b> system działa w całej organizacji od ponad trzech
+                lat; kluczowi kierownicy odzyskali ok. 1,5 godziny dziennie
+                pracy operacyjnej, a produkcja, logistyka i handel pracują na
+                tych samych danych o zleceniach, terminach i kosztach.
+              </p>
+            </article>
+            <article class="case">
+              <div class="num">03 / MB-PNEUMATYKA</div>
+              <h3>Oszczędność w produkcie seryjnym</h3>
+              <p>
+                <b>Problem:</b> w rodzinie złączy wtykowych, produkowanej w
+                dziesiątkach tysięcy sztuk, występowały rozbieżności
+                konstrukcyjne między wariantami rozmiarowymi.
+              </p>
+              <p>
+                <b>Decyzja:</b> zaproponowałem zmianę konstrukcji oraz nową
+                tuleję podporową, która pozwoliła skrócić produkt.
+              </p>
+              <p>
+                <b>Efekt:</b> niższy koszt materiałowy i około
+                <b>250 tys. zł oszczędności rocznie</b>.
+              </p>
+            </article>
+            <article class="case">
+              <div class="num">04 / LUG LIGHT FACTORY</div>
+              <h3>Portfolio bez marnotrawstw</h3>
+              <p>
+                <b>Problem:</b> złożoność wariantów utrudniała wykorzystanie
+                wspólnych komponentów, wycenę i planowanie produkcji.
+              </p>
+              <p>
+                <b>Decyzja:</b> porządkowałem portfolio pod kątem ograniczenia
+                złożoności i realnych możliwości wytwarzania.
+              </p>
+              <p>
+                <b>Efekt:</b> oferta łatwiejsza do utrzymania, wyceny i
+                dostarczenia — bez mnożenia niepotrzebnych wariantów.
+              </p>
+            </article>
+            <article class="case">
+              <div class="num">05 / ROTOMETAL DBN</div>
+              <h3>TKW, zapasy i materiał</h3>
+              <p>
+                <b>Problem:</b> koszty wytworzenia, zapasy i przepływ materiału
+                wymagały wspólnego, operacyjnego spojrzenia.
+              </p>
+              <p>
+                <b>Decyzja:</b> budowałem systemy kalkulacji TKW, koordynowałem
+                zapasy, reorganizowałem wydania materiałowe i wykorzystanie
+                resztek.
+              </p>
+              <p>
+                <b>Efekt:</b> lepsza kontrola kosztów i zasobów; równolegle
+                wdrożone premiowanie pracy na więcej niż jednej maszynie oraz
+                rozliczanie konstruktorów.
+              </p>
+            </article>
+            <article class="case">
+              <div class="num">06 / MB-PNEUMATYKA</div>
+              <h3>Od prototypu do stabilnego procesu</h3>
+              <p>
+                <b>Problem:</b> nowe maszyny i automatyzacja wymagały przejścia
+                od projektu oraz uruchomienia do powtarzalnej produkcji.
+              </p>
+              <p>
+                <b>Decyzja:</b> uczestniczyłem w budowie, wdrażaniu i
+                uruchamianiu maszyn oraz w rozwiązywaniu problemów po starcie.
+              </p>
+              <p>
+                <b>Efekt:</b> stabilniejsze uruchomienia i rozwiązania możliwe
+                do utrzymania w produkcji seryjnej.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="produkty">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">04 / produkty</div>
+              <h2>Produkty, które wdrożyłem.</h2>
+            </div>
+            <p>
+              Od rozwiązania konstrukcyjnego i technologii po gotowy produkt w ofercie. Każde wdrożenie łączyło wymagania produkcji z realną potrzebą rynku.
+            </p>
+          </div>
+          <div class="products">
+            <article class="product">
+              <div class="num">ROTOMETAL</div>
+              <h3>Rozwiązania dla druku i przetwórstwa</h3>
+              <p>
+                Wdrożenia do portfolio: cylindry magnetyczne z aluminium, bazy pod sleeve anilox oraz cylindry drukowe CRO Sleeve AL.
+              </p>
+              <div class="product-links">
+                <a href="https://rotometal.pl/rotoshop/cylindry-magnetyczne-aluminium" target="_blank" rel="noopener">Cylindry magnetyczne ↗</a>
+                <a href="https://rotometal.pl/rotoshop/baza-pod-sleeve-anilox" target="_blank" rel="noopener">Baza Anilox ↗</a>
+                <a href="https://rotometal.pl/rotoshop/cylinder-drukowy-cro-sleeve-al" target="_blank" rel="noopener">CRO Sleeve AL ↗</a>
+              </div>
+            </article>
+            <article class="product">
+              <div class="num">MB PNEUMATYKA</div>
+              <h3>Bloki rozdzielaczy z tworzywa</h3>
+              <p>
+                Wdrożenie bloków rozdzielaczy z tworzywa sztucznego do produkcji i portfolio komponentów pneumatycznych.
+              </p>
+              <div class="product-links">
+                <a href="https://stwebmbgroupweu001p.blob.core.windows.net/web-mbpneumatyka-assets/editor-assets/MB_Pneumatyka_Catalogue_2026_s.pdf#page=36" target="_blank" rel="noopener">Zobacz w katalogu ↗</a>
+              </div>
+            </article>
+            <article class="product">
+              <div class="num">LUG LIGHT FACTORY</div>
+              <h3>Submarka LCS</h3>
+              <p>
+                Stworzyłem i operacjonalizowałem submarkę LCS: parametryczne
+                portfolio ograniczające liczbę SKU, automatyczny dobór opraw
+                oraz sklep wspierający samodzielny zakup i ofertowanie.
+              </p>
+              <div class="product-links">
+                <a href="https://www.lug.com.pl/lcs" target="_blank" rel="noopener">Poznaj LCS ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="droga">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">05 / doświadczenie</div>
+              <h2>Ścieżka, która daje szerokie spojrzenie.</h2>
+            </div>
+            <p>
+              Techniczne fundamenty, znajomość hali i praca na danych pozwalają
+              mi przeprowadzać zmianę od diagnozy do wdrożenia.
+            </p>
+          </div>
+          <div class="timeline">
+            <div class="role">
+              <div class="period">04.2025 - obecnie</div>
+              <div>
+                <h3>Product Manager</h3>
+                <div class="company">LUG Light Factory · Zielona Góra</div>
+                <p>
+                  Świadomie poszerzyłem perspektywę o sprzedaż, marketing i
+                  bezpośredni kontakt z klientem. Rozwijam portfolio oraz
+                  koordynuję R&amp;D, produkcję, planowanie, zakupy i handel — od
+                  potrzeb rynku aż po realizację na hali.
+                </p>
+                <details class="employer">
+                  <summary>Dowiedz się więcej o pracodawcy</summary>
+                  <div class="employer-info">
+                    <b>LUG Light Factory</b> — polski producent profesjonalnego
+                    oświetlenia LED, działający od 1989 r. i obecny na ponad 75
+                    rynkach. Siedziba oraz zakład znajdują się w Zielonej Górze.
+                    Publicznie raportowane przychody spółki za 2025 r.: ok. 165
+                    mln zł.
+                    <a
+                      href="https://www.lug.com.pl/pl/firma/producent-oswietlenia-led"
+                      target="_blank"
+                      rel="noopener"
+                      >Strona firmy ↗</a
+                    >
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="role">
+              <div class="period">01.2023 - 04.2025</div>
+              <div>
+                <h3>Specjalista ds. systemów planowania i zarządzania</h3>
+                <div class="company">Rotometal DBN · Świebodzin</div>
+                <p>
+                  Twórca i architekt RotoPlus — autorskiego systemu ERP dla
+                  ponad 100 użytkowników. Zintegrowałem dane produkcji,
+                  magazynu, logistyki, handlu i zarządu; rozwijałem planowanie,
+                  zapasy, TKW, zarządzanie wąskimi gardłami i plany naprawcze.
+                </p>
+                <details class="employer">
+                  <summary>Dowiedz się więcej o pracodawcy</summary>
+                  <div class="employer-info">
+                    <b>Rotometal</b> — producent precyzyjnych narzędzi
+                    rotacyjnych dla branży poligraficznej i przetwórczej. Firma
+                    powstała w 2006 r.; deklaruje ponad 170 specjalistów, 12 500
+                    m² powierzchni produkcyjnej i obsługę klientów w ponad 30
+                    krajach.
+                    <a
+                      href="https://rotometal.pl/en/rotometal-tooling-precision-in-24-hours-"
+                      target="_blank"
+                      rel="noopener"
+                      >Strona firmy ↗</a
+                    >
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="role">
+              <div class="period">06.2021 - 12.2022</div>
+              <div>
+                <h3>Inżynier R&amp;D - Konstruktor</h3>
+                <div class="company">Rotometal · Świebodzin</div>
+                <p>
+                  Dokumentacja 2D/3D, materiały, oprzyrządowanie, efektywność
+                  technologii i automatyzacja montażu.
+                </p>
+                <details class="employer">
+                  <summary>Dowiedz się więcej o pracodawcy</summary>
+                  <div class="employer-info">
+                    <b>Rotometal</b> — producent precyzyjnych narzędzi
+                    rotacyjnych dla branży poligraficznej i przetwórczej. Firma
+                    powstała w 2006 r.; deklaruje ponad 170 specjalistów, 12 500
+                    m² powierzchni produkcyjnej i obsługę klientów w ponad 30
+                    krajach.
+                    <a
+                      href="https://rotometal.pl/en/rotometal-tooling-precision-in-24-hours-"
+                      target="_blank"
+                      rel="noopener"
+                      >Strona firmy ↗</a
+                    >
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="role">
+              <div class="period">03.2017 - 06.2021</div>
+              <div>
+                <h3>Konstruktor / Młodszy Konstruktor</h3>
+                <div class="company">MB-PNEUMATYKA · Sulechów</div>
+                <p>
+                  Projektowanie, wdrożenia do produkcji seryjnej, KPI, 8D i
+                  automatyzacja montażu.
+                </p>
+                <details class="employer">
+                  <summary>Dowiedz się więcej o pracodawcy</summary>
+                  <div class="employer-info">
+                    <b>MB Pneumatyka</b> — producent złączy pneumatycznych do
+                    układów hamulcowych i zawieszeń pojazdów użytkowych. Firma
+                    działa w Sulechowie, a jej produkty trafiają na rynki
+                    międzynarodowe. Publicznie raportowane przychody za 2025 r.:
+                    ok. 35,6 mln zł.
+                    <a
+                      href="https://mbpneumatyka.com/"
+                      target="_blank"
+                      rel="noopener"
+                      >Strona firmy ↗</a
+                    >
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">06 / warsztat</div>
+              <h2>Narzędzia i kompetencje.</h2>
+            </div>
+            <p>
+              Inżynierskie podejście połączone z komunikacją potrzebną do
+              wprowadzania zmiany w organizacji.
+            </p>
+          </div>
+          <div class="skills">
+            <div class="skill">Lean Manufacturing i 5S</div>
+            <div class="skill">Lean Six Sigma Green Belt</div>
+            <div class="skill">Kalkulacja TKW i koszty</div>
+            <div class="skill">Planowanie i zapasy</div>
+            <div class="skill">Rysunek techniczny 2D/3D</div>
+            <div class="skill">Autodesk Inventor</div>
+            <div class="skill">MSA / SPC / CP (AIAG)</div>
+            <div class="skill">Język angielski - średni</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="kontakt">
+      <div class="wrap contact">
+        <div>
+          <div class="kicker" style="color: #43c7ad">Kontakt</div>
+          <h2>Porozmawiajmy o tym, co można usprawnić.</h2>
+          <p>Zielona Góra, Polska</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:jryba.94@gmail.com">jryba.94@gmail.com</a
+          ><a href="tel:+48534121777">+48 534 121 777</a
+          ><span>Jakub Ryba · Inżynier Produkcji</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
