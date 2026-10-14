@@ -59,7 +59,19 @@ module.exports = async (req, res) => {
       FROM portfolio_events WHERE created_at >= ${since}
       ORDER BY created_at DESC LIMIT 20`;
 
-    return res.status(200).json({ days, summary, daily, recent, generatedAt: new Date().toISOString() });
+    const projects = await sql`
+      SELECT metadata->>'project' AS project,
+             COUNT(*) FILTER (WHERE event_type = 'project_expand')::int AS expands,
+             COUNT(*) FILTER (WHERE event_type = 'project_read')::int AS reads,
+             COUNT(DISTINCT session_id) FILTER (WHERE event_type = 'project_read')::int AS readers
+      FROM portfolio_events
+      WHERE created_at >= ${since}
+        AND event_type IN ('project_expand', 'project_read')
+        AND metadata->>'project' IS NOT NULL
+      GROUP BY metadata->>'project'
+      ORDER BY reads DESC, expands DESC`;
+
+    return res.status(200).json({ days, summary, daily, recent, projects, generatedAt: new Date().toISOString() });
   } catch (error) {
     console.error("Portfolio admin error", error);
     return res.status(500).json({ error: "Nie udało się pobrać analityki" });

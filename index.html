@@ -1116,9 +1116,20 @@
           const target = link.dataset.track;
           send(target === "cv" ? "cv_download" : "outbound_click", { target });
         }));
-        document.querySelectorAll("details.case").forEach((item) => item.addEventListener("toggle", () => {
-          if (item.open) send("project_expand", { target: "project" });
-        }));
+        document.querySelectorAll("details.case").forEach((item) => {
+          let readTimer;
+          item.addEventListener("toggle", () => {
+            clearTimeout(readTimer);
+            const number = item.querySelector(".num")?.textContent.trim() || "Projekt";
+            const title = item.querySelector("h3")?.textContent.trim() || "";
+            const project = `${number} — ${title}`.slice(0, 140);
+            if (!item.open) return;
+            send("project_expand", { target: "project", project });
+            readTimer = setTimeout(() => {
+              if (item.open && !document.hidden) send("project_read", { target: "project", project });
+            }, 7000);
+          });
+        });
       })();
     </script>
   </body>

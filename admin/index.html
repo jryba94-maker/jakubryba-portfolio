@@ -17,6 +17,7 @@
         <section class="grid"><div class="card"><div class="label">Wizyty</div><div class="value" id="visits">—</div></div><div class="card"><div class="label">Odsłony</div><div class="value" id="views">—</div></div><div class="card"><div class="label">Pobrania CV</div><div class="value" id="downloads">—</div></div><div class="card"><div class="label">Śr. aktywny czas</div><div class="value" id="time">—</div></div><div class="card"><div class="label">Śr. przeczytanie</div><div class="value" id="scroll">—</div></div></section>
         <section class="panel"><h2>Lejek zainteresowania</h2><div class="funnel"><div><span>Wizyty</span><b id="f-visits">—</b></div><div><span>Min. 50% strony</span><b id="f-50">—</b></div><div><span>Min. 90% strony</span><b id="f-90">—</b></div><div><span>Kliknięcie kontaktu</span><b id="f-contact">—</b></div><div><span>Pobranie CV</span><b id="f-cv">—</b></div></div></section>
         <section class="panel"><h2>Wizyty dziennie</h2><div class="chart" id="chart"></div></section>
+        <section class="panel"><h2>Praktyki: rozwinięte i przeczytane</h2><div style="overflow:auto"><table><thead><tr><th>Projekt</th><th>Rozwinięcia</th><th>Przeczytania</th><th>Osoby, które przeczytały</th></tr></thead><tbody id="projects"></tbody></table></div></section>
         <section class="panel"><h2>Ostatnia aktywność</h2><div style="overflow:auto"><table><thead><tr><th>Zdarzenie</th><th>Szczegół</th><th>Postęp</th><th>Kiedy</th></tr></thead><tbody id="recent"></tbody></table></div></section>
       </div>
     </main>
@@ -31,6 +32,7 @@
         document.querySelector('#subtitle').textContent = `Ostatnie ${data.days} dni · aktualizacja ${new Date(data.generatedAt).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}`;
         [['visits',s.visits],['views',s.page_views],['downloads',s.cv_downloads],['time',fmt(s.avg_active_seconds)],['scroll',`${s.avg_scroll}%`],['f-visits',s.visits],['f-50',s.scroll_50],['f-90',s.scroll_90],['f-contact',s.contact_clicks],['f-cv',s.cv_downloads]].forEach(([id,value])=>document.querySelector(`#${id}`).textContent=value);
         const high = Math.max(...data.daily.map(x=>x.visits),1); document.querySelector('#chart').innerHTML=data.daily.map(x=>`<div class="bar" style="height:${Math.max(5,x.visits/high*100)}%" title="${x.day}: ${x.visits} wizyt"><span>${x.day}</span></div>`).join('') || '<p>Brak danych — odwiedź stronę, aby rozpocząć pomiar.</p>';
+        document.querySelector('#projects').innerHTML=data.projects.map(x=>`<tr><td>${x.project}</td><td>${x.expands}</td><td>${x.reads}</td><td>${x.readers}</td></tr>`).join('') || '<tr><td colspan="4">Jeszcze nikt nie rozwinął projektu.</td></tr>';
         document.querySelector('#recent').innerHTML=data.recent.map(x=>`<tr><td>${x.event_type}</td><td>${x.metadata?.target||x.pathname}</td><td>${x.scroll_depth ?? '—'}%</td><td>${new Date(x.created_at).toLocaleString('pl-PL')}</td></tr>`).join('') || '<tr><td colspan="4">Brak zdarzeń w tym okresie.</td></tr>';
       }
       function frontendApi(key){const encoded=key.split('_').slice(2).join('_').replace(/-/g,'+').replace(/_/g,'/');return atob(encoded).replace(/\$$/,'')}
