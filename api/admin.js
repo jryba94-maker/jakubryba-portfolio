@@ -22,12 +22,20 @@ function rangeFrom(req) {
 }
 
 module.exports = async (req, res) => {
-  if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
+  res.setHeader("Cache-Control", "no-store");
+  if (!["GET", "DELETE"].includes(req.method)) return res.status(405).json({ error: "Method not allowed" });
   try {
     const user = await authenticate(req);
     if (!user) return res.status(403).json({ error: "Brak dostępu" });
+    if (req.method === "DELETE" && req.headers["x-confirm-reset"] !== "all-analytics") {
+      return res.status(400).json({ error: "Wymagane potwierdzenie resetu" });
+    }
     await ensureSchema();
     const sql = database();
+    if (req.method === "DELETE") {
+      await sql`DELETE FROM portfolio_events`;
+      return res.status(200).json({ ok: true });
+    }
     const { days, since } = rangeFrom(req);
 
     const [summary] = await sql`
