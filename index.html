@@ -1065,21 +1065,40 @@
     </footer>
     <script>
       (() => {
-        const key = "jr_portfolio_session";
-        let sessionId = localStorage.getItem(key);
-        if (!sessionId) {
-          sessionId = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-          localStorage.setItem(key, sessionId);
+        const makeId = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        const visitorKey = "jr_portfolio_visitor";
+        let visitorId = localStorage.getItem(visitorKey);
+        if (!visitorId) {
+          visitorId = localStorage.getItem("jr_portfolio_session") || makeId();
+          localStorage.setItem(visitorKey, visitorId);
         }
+        const visitKey = "jr_portfolio_visit_v2";
+        const timeout = 30 * 60 * 1000;
+        let sessionId;
+        const refreshVisit = () => {
+          let visit;
+          try { visit = JSON.parse(localStorage.getItem(visitKey)); } catch {}
+          if (!visit || typeof visit.id !== "string" || !Number.isFinite(visit.lastSeen) || Date.now() - visit.lastSeen >= timeout) {
+            visit = { id: makeId(), lastSeen: Date.now() };
+          }
+          if (sessionId && sessionId !== visit.id) {
+            maxScroll = 0; activeSeconds = 0; lastSent = 0;
+          }
+          sessionId = visit.id;
+          visit.lastSeen = Date.now();
+          localStorage.setItem(visitKey, JSON.stringify(visit));
+        };
         let maxScroll = 0;
         let activeSeconds = 0;
         let lastActive = Date.now();
         let lastSent = 0;
 
         const send = (event, extra = {}) => {
+          refreshVisit();
           const body = JSON.stringify({
             event,
             sessionId,
+            visitorId,
             pathname: location.pathname,
             scrollDepth: maxScroll,
             activeSeconds,
