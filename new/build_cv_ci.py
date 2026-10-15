@@ -33,7 +33,7 @@ bullet('Zaprojektowałem narzędzie wspierane AI, używane codziennie przy plano
 bullet('Porządkuję portfolio: wycofano 30% produktów, kolejne 20% zaplanowano do wygaszenia. Rozwijam narzędzia wycen i planowania.')
 bullet('Koordynowałem wdrożenie submarki LCS: kierunek portfolio, wybór produktów i komunikację. Stworzyłem sklep shop.lug.com.pl z doborem opraw i narzędziami ofertowania.')
 role('01.2023 - 04.2025','Specjalista ds. systemów planowania i zarządzania','Rotometal DBN sp. z o.o. | Świebodzin')
-bullet('Architekt funkcjonalny i wdrożeniowiec RotoPlus, ERP dla ponad 100 użytkowników. Projektowałem logikę procesów, ustalałem priorytety i koordynowałem pracę grupy programistów. Osobiście szkoliłem użytkowników i wspierałem uruchomienie systemu.')
+bullet('Architekt funkcjonalny i wdrożeniowiec Roto+, ERP dla ponad 100 użytkowników. Projektowałem logikę procesów, ustalałem priorytety i koordynowałem pracę grupy programistów. Osobiście szkoliłem użytkowników i wspierałem uruchomienie systemu.')
 bullet('Integracja statusów zleceń, obciążenia gniazd, wykorzystania maszyn, magazynu i danych zarządczych. System używany w organizacji od ponad 3 lat; blisko 2-godzinne codzienne spotkania ograniczono do dwóch spotkań po 30 minut tygodniowo.')
 bullet('Systemy kalkulacji kosztu wytworzenia, koordynacja zapasów i wydań materiałowych. Wykorzystanie resztek stali nierdzewnej do kół zębatych ograniczyło zużycie nowej stali narzędziowej.')
 bullet('Wdrożenie rozliczania konstruktorów oraz premiowania pracy na więcej niż jednej maszynie.')
