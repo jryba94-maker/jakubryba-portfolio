@@ -27,6 +27,9 @@ module.exports = async (req, res) => {
   try {
     const user = await authenticate(req);
     if (!user) return res.status(403).json({ error: "Brak dostępu" });
+    const host = (req.headers.host || "").split(":")[0];
+    const domain = /^(www\\.)?jakubryba\\.pl$/i.test(host) ? "; Domain=jakubryba.pl" : "";
+    res.setHeader("Set-Cookie", `portfolio_owner=1; Path=/; Max-Age=31536000; HttpOnly; Secure; SameSite=Lax${domain}`);
     if (req.method === "DELETE" && req.headers["x-confirm-reset"] !== "all-analytics") {
       return res.status(400).json({ error: "Wymagane potwierdzenie resetu" });
     }
