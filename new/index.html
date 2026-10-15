@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Jakub Ryba - inżynier produkcji, Lean, optymalizacja procesów i wdrożenia." name="description"/>
+<link href="/jr-mark.svg" rel="icon" type="image/svg+xml"/>
+<meta content="#162a27" name="theme-color"/>
+<title>Jakub Ryba — Inżynieria. Proces. Wynik.</title>
+
+<style>
+:root{--ink:#162a27;--paper:#f4f2ec;--muted:#64706a;--line:#d6dad1;--accent:#d0e8a0;--blue:#315e4c}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.65 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button,a,summary{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #8bae54;outline-offset:5px}.wrap{width:min(1320px,calc(100% - 112px));margin:auto}body>.wrap{position:sticky;top:0;z-index:20;width:100%;background:#f4f2ecf5;border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}nav{width:min(1320px,calc(100% - 112px));margin:auto;display:flex;align-items:center;justify-content:space-between;min-height:88px;gap:30px}.brand{font-size:20px;letter-spacing:-1px;font-weight:800}.brand span{font-weight:400}.navlinks{display:flex;gap:30px;font-size:13px}.navlinks a:hover{color:var(--blue)}.navlinks a:last-child{border-bottom:1px solid var(--ink)}.menu-toggle{display:none}.hero{position:relative;display:grid;grid-template-columns:1.35fr 1fr;gap:32px 70px;padding-top:45px;padding-bottom:66px;align-items:center}.hero-index{grid-column:1/-1;letter-spacing:2px;font-size:10px;font-weight:700;color:var(--muted);padding-bottom:22px}.eyebrow,.kicker,.num,.period{font:11px/1.5 'Courier New',monospace;letter-spacing:1.3px;text-transform:uppercase}.eyebrow{margin-bottom:27px;display:flex;align-items:center;gap:10px}.eyebrow:before{content:'';width:7px;height:7px;border-radius:50%;background:#547558}h1,h2,h3,p{margin:0}h1{font-size:clamp(44px,4.9vw,72px);line-height:1.04;letter-spacing:-3.5px;font-weight:500;max-width:780px}h1 em{font-family:Georgia,serif;font-weight:400;color:#52705c}h2{font-size:clamp(32px,3.4vw,49px);font-weight:400;line-height:1.12;letter-spacing:-1.9px;max-width:650px}h3{font-size:25px;line-height:1.22;letter-spacing:-.6px;font-weight:500}.lead{max-width:535px;color:var(--muted);font-size:16px;line-height:1.8;margin-top:28px}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px 25px;margin-top:30px}.btn{display:inline-flex;justify-content:center;align-items:center;padding:16px 24px;font-size:13px}.primary{background:var(--ink);color:white;border-radius:2px}.primary:hover{background:#315e4c}.text-link{font-size:12px;border-bottom:1px solid #b6bdb3;padding-bottom:3px}.card{position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#e9eae3;min-height:520px}.portrait{display:block;width:100%;height:100%;max-height:560px;object-fit:cover;object-position:center 26%;mix-blend-mode:multiply}.card-copy{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#162a27ed);color:white;padding:70px 30px 28px}.card-copy p{font-size:10px;text-transform:uppercase;letter-spacing:1.6px;opacity:.7;margin-bottom:7px}.card-copy strong{font-size:17px;line-height:1.5;font-weight:400}.proof-strip{display:grid;grid-template-columns:repeat(3,1fr);width:min(1320px,calc(100% - 112px));margin:0 auto 75px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proof-strip>div{display:flex;align-items:center;gap:22px;padding:28px 20px;border-right:1px solid var(--line)}.proof-strip>div:first-child{padding-left:0}.proof-strip>div:last-child{border:0}.proof-strip strong{font-size:38px;font-weight:400;letter-spacing:-2px;white-space:nowrap}.proof-strip span{font-size:11px;line-height:1.6;color:var(--muted)}section{padding:100px 0;border-top:1px solid var(--line)}.section-head,.workflow-head{display:grid;grid-template-columns:1.1fr 1fr;gap:90px;margin-bottom:55px;align-items:end}.section-head p,.workflow-head p{font-size:15px;color:var(--muted);max-width:490px}.kicker{color:var(--muted);margin-bottom:23px}.project-gallery{padding:0 0 80px;border:0;overflow:hidden}.project-gallery .section-head{margin-bottom:32px}.project-gallery h2{font-size:32px}.project-gallery .section-head p{font-size:13px}.gallery-viewport{overflow:hidden}.gallery-track{display:flex;width:max-content;animation:gallery-loop 120s linear infinite;will-change:transform}.gallery-group{display:flex;gap:18px;padding-right:18px}.gallery-card{width:340px;flex:0 0 340px;aspect-ratio:4/3;cursor:zoom-in;border:0;padding:0;background:#ddd;overflow:hidden}.gallery-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.gallery-card:hover img{transform:scale(1.04)}.gallery-track:hover,.gallery-track:focus-within,.gallery-track.paused{animation-play-state:paused}@keyframes gallery-loop{to{transform:translateX(-50%)}}.impact{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding-top:35px;gap:50px}.impact b{display:block;font:italic 35px Georgia,serif;margin-bottom:12px}.impact span{font-size:14px;color:var(--muted)}.workflow{background:var(--ink);color:var(--paper);border:0}.workflow .kicker,.workflow-head p{color:#b5c1b8}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;border-top:1px solid #ffffff30;padding-top:38px}.step b{display:block;font-size:16px;font-weight:400;margin-bottom:12px;color:var(--accent)}.step span{font-size:13px;color:#b5c1b8}.cases{border-top:1px solid var(--ink)}.case{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}.case>summary{display:grid;grid-template-columns:225px 1fr 42px;align-items:center;gap:25px;padding:30px 0}.case .num{color:var(--muted);font-size:10px}.case-indicator{border:1px solid var(--line);border-radius:50%;height:38px;width:38px;display:grid;place-items:center;transition:transform .2s}.case[open] .case-indicator{background:var(--ink);color:white;transform:rotate(90deg)}.case:hover h3{color:#52705c}.case-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:10px 0 38px 250px}.case-detail p{font-size:13px;color:var(--muted)}.case-detail b{color:var(--ink);font-weight:600}.case-detail p>b:first-child{display:block;margin-bottom:9px;font:10px 'Courier New',monospace;text-transform:uppercase;letter-spacing:1.2px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.product-image{display:block;width:100%;height:235px;object-fit:cover;margin-bottom:27px;background:#e2e5dd}.product .num{margin-bottom:14px;color:var(--muted)}.product h3{margin-bottom:18px}.product p{font-size:14px;color:var(--muted)}.product-more{margin-top:18px;font-size:13px}.product-more summary{border-bottom:1px solid var(--line);padding-bottom:9px}.product-more summary:after{content:' +';float:right}.product-more p{margin-top:12px}.product-links{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:20px}.product-links a{font-size:11px;border-bottom:1px solid #a6b5a4;padding-bottom:3px}.timeline{border-top:1px solid var(--ink)}.role{display:grid;grid-template-columns:260px 1fr;gap:45px;border-bottom:1px solid var(--line);padding:34px 0}.period{color:var(--muted);padding-top:5px}.role h3{margin-bottom:9px}.company{font-size:14px;font-weight:600}.role p{color:var(--muted);font-size:14px;max-width:740px;margin-top:18px}.employer-heading{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}.employer{font-size:10px;color:var(--muted)}.employer summary{text-decoration:underline;text-underline-offset:3px}.employer[open]{flex-basis:100%}.employer-info{font-size:12px;padding:18px;border-left:2px solid #a4b68f;margin-top:12px;background:#e9ece4;max-width:740px}.employer-info a{display:block;text-decoration:underline;margin-top:8px}.skills{display:flex;flex-wrap:wrap;gap:12px}.skill{padding:13px 21px;border:1px solid #bcc5b6;border-radius:3px;font-size:13px}footer{background:var(--ink);color:var(--paper);padding:90px 0 45px}.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:90px}.contact h2{font-size:48px}.contact p{margin-top:30px;color:#b5c1b8;font-size:12px}.contact-links{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px}.contact-links a{font-size:20px;border-bottom:1px solid #ffffff40;padding-bottom:6px}.contact-links span{font-size:11px;margin-top:30px;color:#b5c1b8}.photo-dialog{background:#162a27;border:0;padding:18px;max-width:94vw;max-height:94vh;color:white}.photo-dialog::backdrop{background:#081512ed}.photo-dialog img{display:block;max-width:85vw;max-height:78vh;object-fit:contain}.photo-close{display:block;margin:0 0 15px auto;background:none;border:1px solid #ffffff50;color:white;padding:8px 20px;cursor:pointer}.skip-link{position:fixed;left:20px;top:-90px;background:var(--ink);color:white;padding:12px;z-index:100}.skip-link:focus{top:12px}
+@media(min-width:1600px){.hero{padding-top:55px;padding-bottom:80px}.card{min-height:570px}}
+@media(max-width:1100px){.wrap,nav,.proof-strip{width:calc(100% - 64px)}.hero{gap:30px}.card{min-height:460px}h1{letter-spacing:-2px}.proof-strip>div{gap:14px}.proof-strip strong{font-size:30px}.section-head,.workflow-head{gap:45px}.case>summary{grid-template-columns:175px 1fr 38px}.case-detail{padding-left:200px;grid-template-columns:1fr;gap:20px}.products{gap:22px}.product-image{height:190px}.role{grid-template-columns:190px 1fr}.contact{gap:45px}}
+@media(max-width:760px){html{scroll-padding-top:85px}.wrap,nav,.proof-strip{width:calc(100% - 40px)}nav{min-height:72px;flex-wrap:wrap;gap:0}.brand{font-size:19px}.menu-toggle{display:block;background:transparent;color:var(--ink);border:1px solid var(--line);padding:6px 13px;font-size:12px}.navlinks{display:none;flex-basis:100%;flex-direction:column;gap:0;padding:15px 0 20px}.navlinks.open{display:flex}.navlinks a{padding:10px 0}.navlinks a:last-child{border:0}.hero{grid-template-columns:1fr;padding-top:27px;padding-bottom:28px;gap:30px}.hero-index{font-size:9px;padding-bottom:0;letter-spacing:1.3px}.eyebrow{font-size:9px;margin-bottom:20px;letter-spacing:1px}h1{font-size:clamp(41px,10.4vw,66px);letter-spacing:-2px;line-height:1.08}.lead{font-size:14px;margin-top:22px}.actions{gap:17px 23px;margin-top:24px}.btn{padding:14px 21px}.card{min-height:0;height:390px;margin-top:10px}.portrait{height:100%;object-fit:contain;object-position:center bottom}.card-copy{padding:55px 22px 20px}.card-copy strong{font-size:15px}.proof-strip{margin-bottom:48px;grid-template-columns:1fr}.proof-strip>div,.proof-strip>div:first-child{padding:18px 0;gap:22px;border-right:0;border-bottom:1px solid var(--line)}.proof-strip strong{font-size:32px;width:155px}.proof-strip span{font-size:11px}.project-gallery{padding-bottom:45px}.section-head,.workflow-head{grid-template-columns:1fr;gap:24px;margin-bottom:35px}.section-head p,.workflow-head p{font-size:14px}.kicker{margin-bottom:16px;font-size:10px}h2{font-size:35px;letter-spacing:-1.3px}.project-gallery h2{font-size:29px}.gallery-card{width:260px;flex-basis:260px}.gallery-group{gap:12px;padding-right:12px}section{padding:58px 0}.impact{grid-template-columns:1fr;gap:24px;padding-top:25px}.impact>div{display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center}.impact b{font-size:26px;margin:0}.impact span{font-size:13px}.steps{grid-template-columns:1fr 1fr;gap:30px 20px;padding-top:28px}.step b{font-size:14px}.step span{font-size:12px}.case>summary{grid-template-columns:1fr 38px;gap:10px 15px;padding:24px 0}.case .num{grid-column:1;font-size:9px}.case h3{grid-column:1;font-size:23px}.case-indicator{grid-column:2;grid-row:1/3}.case-detail{padding:0 0 26px;gap:18px}.products{grid-template-columns:1fr;gap:42px}.product-image{height:auto;aspect-ratio:3/2;margin-bottom:20px}.product h3{font-size:26px}.role{grid-template-columns:1fr;gap:14px;padding:28px 0}.role h3{font-size:23px}.role p{font-size:13px}.employer-heading{gap:10px}.employer summary{font-size:10px}.skills{gap:8px}.skill{padding:10px 13px;font-size:11px}.contact{grid-template-columns:1fr;gap:35px}.contact h2{font-size:36px}.contact-links a{font-size:18px}.contact p{margin-top:22px}footer{padding:55px 0 35px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery-track{animation:none}.gallery-viewport{overflow-x:auto}*{transition:none!important}}
+</style></head>
+<body><a class="skip-link" href="#start">Przejdź do treści</a>
+<div class="wrap">
+<nav>
+<button aria-controls="navigation" aria-expanded="false" class="menu-toggle" type="button">Menu +</button><a class="brand" href="#start">JAKUB <span>RYBA</span></a>
+<div class="navlinks" id="navigation">
+<a href="#o-mnie">Profil</a><a href="#projekty">Projekty</a><a href="#produkty">Produkty</a><a href="#droga">Doświadczenie</a><a href="#kontakt">Kontakt</a>
+</div>
+</nav>
+</div>
+<main id="start">
+<div class="wrap hero"><div class="hero-index">JAKUB RYBA / PORTFOLIO ZAWODOWE</div>
+<div>
+<div class="eyebrow">Inżynier produkcji / Lean / Wdrożenia</div>
+<h1>Od konstrukcji produktu po <em>efektywność produkcji.</em></h1>
+<p class="lead">
+            Łączę ponad 9 lat doświadczenia inżynierskiego z praktyką w
+            planowaniu, optymalizacji kosztów i wdrażaniu rozwiązań, które
+            działają w rzeczywistych warunkach produkcyjnych.
+          </p>
+<div class="actions">
+<a class="btn primary" href="#projekty">Zobacz projekty ↓</a><a class="text-link" data-track="email" href="mailto:jryba.94@gmail.com">Napisz do mnie</a><a class="text-link" data-track="linkedin" href="https://www.linkedin.com/in/jakub-ryba-9045101a2" rel="noopener" target="_blank">LinkedIn ↗</a><a class="text-link" data-track="cv" download="" href="/Jakub_Ryba_CV_Inzynier_Produkcji_METAL_GUM.pdf">Pobierz CV PDF ↓</a>
+</div>
+</div>
+<aside class="card">
+<img alt="Jakub Ryba" class="portrait" src="/Profesjonalny%20portret%20biznesowy%20m%C4%99%C5%BCczyzny.png"/>
+<div class="card-copy">
+<p>Obszary, w których pracuję</p>
+<strong>Produkcja · Lean · Planowanie<br/>Koszty · Automatyzacja</strong>
+</div>
+</aside>
+</div><div class="proof-strip"><div><strong>9+</strong><span>lat doświadczenia<br/>inżynierskiego</span></div><div><strong>100+</strong><span>użytkowników wdrożonego<br/>systemu ERP</span></div><div><strong>250 tys. zł</strong><span>oszczędności rocznie<br/>w produkcie seryjnym</span></div></div>
+<section class="project-gallery" id="galeria"><div class="wrap"><div class="section-head"><div><div class="kicker">01 / realizacje</div><h2>Realizacje w praktyce.</h2></div><p>Od konstrukcji i stanowisk montażowych po narzędzia oraz systemy wspierające produkcję. Kliknij wybrane zdjęcie, aby zobaczyć szczegóły.</p></div><div aria-label="Zdjęcia realizacji" class="gallery-viewport"><div class="gallery-track"><div class="gallery-group"><button aria-label="Powiększ: Narzędzia rotacyjne" class="gallery-card" data-photo="/projekty/projekt-01.webp" type="button"><img alt="Narzędzia rotacyjne" height="750" loading="lazy" src="/projekty/projekt-01.webp" width="1000"/></button>
+<button aria-label="Powiększ: Identyfikacja produktu" class="gallery-card" data-photo="/projekty/projekt-02.webp" type="button"><img alt="Identyfikacja produktu" height="750" loading="lazy" src="/projekty/projekt-02.webp" width="1000"/></button>
+<button aria-label="Powiększ: Sterowanie stanowiskiem montażowym" class="gallery-card" data-photo="/projekty/projekt-03.webp" type="button"><img alt="Sterowanie stanowiskiem montażowym" height="750" loading="lazy" src="/projekty/projekt-03.webp" width="1000"/></button>
+<button aria-label="Powiększ: Obróbka elementu" class="gallery-card" data-photo="/projekty/projekt-04.webp" type="button"><img alt="Obróbka elementu" height="750" loading="lazy" src="/projekty/projekt-04.webp" width="1000"/></button>
+<button aria-label="Powiększ: Montaż komponentów pneumatycznych" class="gallery-card" data-photo="/projekty/projekt-05.webp" type="button"><img alt="Montaż komponentów pneumatycznych" height="750" loading="lazy" src="/projekty/projekt-05.webp" width="1000"/></button>
+<button aria-label="Powiększ: Organizacja materiałów" class="gallery-card" data-photo="/projekty/projekt-06.webp" type="button"><img alt="Organizacja materiałów" height="750" loading="lazy" src="/projekty/projekt-06.webp" width="1000"/></button>
+<button aria-label="Powiększ: Planowanie dostępne na telefonie" class="gallery-card" data-photo="/projekty/projekt-07.webp" type="button"><img alt="Planowanie dostępne na telefonie" height="750" loading="lazy" src="/projekty/projekt-07.webp" width="1000"/></button>
+<button aria-label="Powiększ: Stanowisko montażowe" class="gallery-card" data-photo="/projekty/projekt-08.webp" type="button"><img alt="Stanowisko montażowe" height="750" loading="lazy" src="/projekty/projekt-08.webp" width="1000"/></button>
+<button aria-label="Powiększ: Dane do planowania produkcji" class="gallery-card" data-photo="/projekty/projekt-09.webp" type="button"><img alt="Dane do planowania produkcji" height="750" loading="lazy" src="/projekty/projekt-09.webp" width="1000"/></button>
+<button aria-label="Powiększ: Blok rozdzielacza pneumatycznego" class="gallery-card" data-photo="/projekty/projekt-10.webp" type="button"><img alt="Blok rozdzielacza pneumatycznego" height="750" loading="lazy" src="/projekty/projekt-10.webp" width="1000"/></button>
+<button aria-label="Powiększ: System wspierający produkcję" class="gallery-card" data-photo="/projekty/projekt-11.webp" type="button"><img alt="System wspierający produkcję" height="750" loading="lazy" src="/projekty/projekt-11.webp" width="1000"/></button>
+<button aria-label="Powiększ: Komponent pneumatyczny" class="gallery-card" data-photo="/projekty/projekt-12.webp" type="button"><img alt="Komponent pneumatyczny" height="750" loading="lazy" src="/projekty/projekt-12.webp" width="1000"/></button>
+<button aria-label="Powiększ: Automatyzacja montażu" class="gallery-card" data-photo="/projekty/projekt-13.webp" type="button"><img alt="Automatyzacja montażu" height="750" loading="lazy" src="/projekty/projekt-13.webp" width="1000"/></button>
+<button aria-label="Powiększ: Konstrukcje narzędzi rotacyjnych" class="gallery-card" data-photo="/projekty/projekt-14.webp" type="button"><img alt="Konstrukcje narzędzi rotacyjnych" height="750" loading="lazy" src="/projekty/projekt-14.webp" width="1000"/></button>
+<button aria-label="Powiększ: Identyfikacja zleceń" class="gallery-card" data-photo="/projekty/projekt-15.webp" type="button"><img alt="Identyfikacja zleceń" height="750" loading="lazy" src="/projekty/projekt-15.webp" width="1000"/></button>
+<button aria-label="Powiększ: Gotowe narzędzie rotacyjne" class="gallery-card" data-photo="/projekty/projekt-16.webp" type="button"><img alt="Gotowe narzędzie rotacyjne" height="750" loading="lazy" src="/projekty/projekt-16.webp" width="1000"/></button></div></div></div></div></section><section id="o-mnie">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">02 / profil</div>
+<h2>Od pomysłu do stabilnej produkcji.</h2>
+</div>
+<p>
+              Ponad 9 lat w firmach produkcyjnych. Pracowałem jako konstruktor,
+              inżynier R&amp;D, specjalista od planowania i Product Manager.
+              Dzięki temu widzę proces od dokumentacji i stanowiska pracy aż po
+              koszt, zapas i wynik biznesowy.
+            </p>
+</div>
+<div class="impact">
+<div>
+<b>Lean</b><span>Eliminacja marnotrawstw i upraszczanie portfolio</span>
+</div>
+<div>
+<b>Przepływ</b><span>Planowanie, wykorzystanie mocy i zapasów</span>
+</div>
+<div>
+<b>Zmiana</b><span>Łączę zarząd, produkcję i zespoły techniczne</span>
+</div>
+</div>
+</div>
+</section>
+<section class="workflow" id="jak-pracuje">
+<div class="wrap">
+<div class="workflow-head">
+<div>
+<div class="kicker">03 / podejście</div>
+<h2>Jak przeprowadzam zmianę.</h2>
+</div>
+<p>
+              Łączę analizę procesu z decyzjami możliwymi do wdrożenia na
+              hali.<br/>Doprowadzam je do momentu, w którym działają.
+            </p>
+</div>
+<div class="steps">
+<div class="step">
+<b>01 / Diagnoza</b><span>Proces, dane, ograniczenia</span>
+</div>
+<div class="step">
+<b>02 / Decyzja</b><span>Rozwiązanie i priorytety</span>
+</div>
+<div class="step">
+<b>03 / Wdrożenie</b><span>Ludzie, narzędzia, odpowiedzialność</span>
+</div>
+<div class="step">
+<b>04 / Utrzymanie</b><span>Wynik, standard i dalsze usprawnienia</span>
+</div>
+</div>
+</div>
+</section>
+<section id="projekty">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">04 / praktyka</div>
+<h2>Zmiany, które wdrażałem.</h2>
+</div>
+<p>
+              Nie traktuję optymalizacji jako prezentacji. Zaczynam od procesu i
+              danych, a kończę na rozwiązaniu, które jest zrozumiałe dla ludzi i
+              możliwe do utrzymania.
+            </p>
+</div>
+<div class="cases">
+<details class="case" open="">
+<summary>
+<div class="num">01 / LUG LIGHT FACTORY</div>
+<h3>AI w planowaniu produkcji i zapasów</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> ograniczony dostęp do komponentów zakupowych
+                mimo wysokiego stanu magazynu; system blokował zlecenia możliwe
+                do realizacji po kontrolowanej zmianie komponentów.
+              </p>
+<p>
+<b>Decyzja:</b> zaprojektowałem autorski system wspierany AI,
+                łączący otwarte zlecenia, dostępne komponenty i moduły
+                kontrolowanych „podmian” materiałowych.
+              </p>
+<p>
+<b>Efekt:</b> decyzje produkcyjne oparte na realnie dostępnych
+                zapasach oraz jasna identyfikacja ograniczeń elastyczności BOM-ów.
+              </p>
+</div>
+</details>
+<details class="case">
+<summary>
+<div class="num">02 / ROTOMETAL · ROTOPLUS</div>
+<h3>Autorski system ERP dla produkcji</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> produkcja opierała się na kartkach i wiedzy
+                „w głowie” kierownika; brakowało wspólnego obrazu realizacji
+                zleceń, kosztów i obciążeń.
+              </p>
+<p>
+<b>Decyzja:</b> jako architekt i wdrożeniowiec RotoPlus kierowałem
+                kierunkiem rozwoju, logiką narzędzi i wdrożeniem systemu ERP
+                dla ponad 100 użytkowników — we współpracy z zespołem programistów.
+              </p>
+<p>
+<b>Efekt:</b> system działa w całej organizacji od ponad trzech
+                lat; codzienne, blisko dwugodzinne spotkanie produkcji,
+                logistyki i reklamacji ograniczyliśmy do dwóch 30-minutowych
+                spotkań tygodniowo. Zespoły pracują na tych samych danych o
+                zleceniach, terminach i kosztach.
+              </p>
+</div>
+</details>
+<details class="case">
+<summary>
+<div class="num">03 / MB-PNEUMATYKA</div>
+<h3>Oszczędność w produkcie seryjnym</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> w rodzinie złączy wtykowych, produkowanej w
+                dziesiątkach tysięcy sztuk, występowały rozbieżności
+                konstrukcyjne między wariantami rozmiarowymi.
+              </p>
+<p>
+<b>Decyzja:</b> zaproponowałem zmianę konstrukcji oraz nową
+                tuleję podporową, która pozwoliła skrócić produkt.
+              </p>
+<p>
+<b>Efekt:</b> niższy koszt materiałowy i około
+                <b>250 tys. zł oszczędności rocznie</b>.
+              </p>
+</div>
+</details>
+<details class="case">
+<summary>
+<div class="num">04 / LUG LIGHT FACTORY</div>
+<h3>Portfolio bez marnotrawstw</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> złożoność wariantów utrudniała wykorzystanie
+                wspólnych komponentów, wycenę i planowanie produkcji.
+              </p>
+<p>
+<b>Decyzja:</b> porządkowałem portfolio pod kątem ograniczenia
+                złożoności i realnych możliwości wytwarzania.
+              </p>
+<p>
+<b>Efekt:</b> usunięto 30% produktów z portfolio, a kolejne 20%
+                jest w procesie wygaszania — przy mniejszej złożoności
+                wyceny, planowania i wykorzystania komponentów.
+              </p>
+</div>
+</details>
+<details class="case">
+<summary>
+<div class="num">05 / ROTOMETAL DBN</div>
+<h3>Koszt wytworzenia, zapasy i materiał</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> koszty wytworzenia, zapasy i przepływ materiału
+                wymagały wspólnego, operacyjnego spojrzenia.
+              </p>
+<p>
+<b>Decyzja:</b> budowałem systemy kalkulacji kosztu wytworzenia, koordynowałem
+                zapasy, reorganizowałem wydania materiałowe i wykorzystanie
+                resztek.
+              </p>
+<p>
+<b>Efekt:</b> lepsza kontrola kosztów i zasobów; równolegle
+                wdrożone premiowanie pracy na więcej niż jednej maszynie oraz
+                rozliczanie konstruktorów.
+              </p>
+</div>
+</details>
+<details class="case">
+<summary>
+<div class="num">06 / MB-PNEUMATYKA</div>
+<h3>Automatyczna kontrola szczelności i montażu</h3><span aria-hidden="true" class="case-indicator">↗</span></summary>
+<div class="case-detail">
+<p>
+<b>Problem:</b> automatyczne sprawdzanie szczelności złączy wymagało
+                równoległej, wiarygodnej kontroli kompletności montażu.
+              </p>
+<p>
+<b>Decyzja:</b> odpowiadałem za wizyjny system kontroli kompletności
+                montażu oraz jego kalibrację podczas uruchomienia maszyny.
+              </p>
+<p>
+<b>Efekt:</b> automatyczne połączenie testu szczelności z kontrolą
+                kompletności montażu w jednym procesie końcowej weryfikacji.
+              </p>
+</div>
+</details>
+</div>
+</div>
+</section>
+<section id="produkty">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">05 / produkty</div>
+<h2>Produkty, które wdrożyłem.</h2>
+</div>
+<p>
+              Od rozwiązania konstrukcyjnego i technologii po gotowy produkt w ofercie. Każde wdrożenie łączyło wymagania produkcji z realną potrzebą rynku.
+            </p>
+</div>
+<div class="products">
+<article class="product"><img alt="" class="product-image" height="600" loading="lazy" src="/projekty/projekt-14.webp" width="900"/>
+<div class="num">ROTOMETAL</div>
+<h3>Rozwiązania dla druku i przetwórstwa</h3>
+<p>
+                Prowadziłem produkty od pomysłu i koncepcji konstrukcyjnej, przez koszty, wdrożenie i komercjalizację, po prezentację handlowi oraz klientom końcowym. Portfolio obejmuje cylindry magnetyczne z aluminium, bazy pod sleeve anilox i RotoSleeve Hybrid.
+              </p>
+<details class="product-more"><summary>Więcej o wdrożeniu cylindra</summary><p>Jako pierwsi wdrożyliśmy cylindry magnetyczne z aluminium 7075. Skróciliśmy czas obróbki korpusu, zmniejszyliśmy zużycie narzędzi i obniżyliśmy koszt materiału. Jednocześnie zwiększyliśmy cenę sprzedaży, co przełożyło się na poprawę marżowości produktów o ponad 10%.</p></details>
+<div class="product-links">
+<a href="https://rotometal.pl/rotoshop/cylindry-magnetyczne-aluminium" rel="noopener" target="_blank">Cylindry magnetyczne ↗</a>
+<a href="https://rotometal.pl/rotoshop/baza-pod-sleeve-anilox" rel="noopener" target="_blank">Baza Anilox ↗</a>
+<a href="https://rotometal.pl/rotosleeve-hybrid" rel="noopener" target="_blank">RotoSleeve Hybrid ↗</a>
+</div>
+</article>
+<article class="product"><img alt="" class="product-image" height="600" loading="lazy" src="/projekty/projekt-10.webp" width="900"/>
+<div class="num">MB PNEUMATYKA</div>
+<h3>Bloki rozdzielaczy i zawory spustowe</h3>
+<p>
+                Odpowiadałem za konstrukcję bloków rozdzielaczy z tworzywa sztucznego, wdrożonych do produkcji i portfolio komponentów pneumatycznych. Projektowałem również nowe zawory spustowe z myślą o zminimalizowaniu siły potrzebnej do ich otwarcia.
+              </p>
+<div class="product-links">
+<a href="https://stwebmbgroupweu001p.blob.core.windows.net/web-mbpneumatyka-assets/editor-assets/MB_Pneumatyka_Catalogue_2026_s.pdf#page=36" rel="noopener" target="_blank">Zobacz w katalogu ↗</a>
+</div>
+</article>
+<article class="product"><img alt="" class="product-image" height="600" loading="lazy" src="/projekty/projekt-07.webp" width="900"/>
+<div class="num">LUG LIGHT FACTORY</div>
+<h3>Submarka LCS</h3>
+<p>
+                Koordynowałem wdrożenie submarki LCS: określiłem kierunek portfolio,
+                wybrałem produkty oraz prowadziłem komunikację wewnętrzną i
+                zewnętrzną. Rozwiązanie obejmuje parametryczne portfolio,
+                automatyczny dobór opraw oraz stworzony przeze mnie sklep internetowy shop.lug.com.pl, wspierający samodzielny zakup i ofertowanie.
+              </p>
+<div class="product-links">
+<a href="https://www.lug.com.pl/lcs" rel="noopener" target="_blank">Poznaj LCS ↗</a>
+<a href="https://shop.lug.com.pl" rel="noopener" target="_blank">Zobacz sklep ↗</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="droga">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">06 / doświadczenie</div>
+<h2>Ścieżka, która daje szerokie spojrzenie.</h2>
+</div>
+<p>
+              Techniczne fundamenty, znajomość hali i praca na danych pozwalają
+              mi przeprowadzać zmianę od diagnozy do wdrożenia.
+            </p>
+</div>
+<div class="timeline">
+<div class="role">
+<div class="period">04.2025 - obecnie</div>
+<div>
+<h3>Product Manager</h3>
+<div class="employer-heading"><div class="company">LUG Light Factory · Zielona Góra</div>
+<details class="employer">
+<summary>Dowiedz się więcej o pracodawcy</summary>
+<div class="employer-info">
+<b>LUG Light Factory</b> — polski producent profesjonalnego
+                    oświetlenia LED, działający od 1989 r. i obecny na ponad 75
+                    rynkach. Siedziba oraz zakład znajdują się w Zielonej Górze.
+                    Publicznie raportowane przychody spółki za 2025 r.: ok. 165
+                    mln zł.
+                    <a href="https://www.lug.com.pl/pl/firma/producent-oswietlenia-led" rel="noopener" target="_blank">Strona firmy ↗</a>
+</div>
+</details>
+</div>
+<p>
+                  Zarządzam portfolio oświetlenia profesjonalnego — łączę wymagania techniczne z potrzebami klientów i celami sprzedaży. Wyznaczam kierunki rozwoju produktów oraz koordynuję ich wdrożenia we współpracy z R&amp;D, produkcją, planowaniem, zakupami i handlem.
+                </p>
+</div>
+</div>
+<div class="role">
+<div class="period">01.2023 - 04.2025</div>
+<div>
+<h3>Specjalista ds. systemów planowania i zarządzania</h3>
+<div class="employer-heading"><div class="company">Rotometal DBN · Świebodzin</div>
+<details class="employer">
+<summary>Dowiedz się więcej o pracodawcy</summary>
+<div class="employer-info">
+<b>Rotometal</b> — producent precyzyjnych narzędzi
+                    rotacyjnych dla branży poligraficznej i przetwórczej. Firma
+                    powstała w 2006 r.; deklaruje ponad 170 specjalistów, 12 500
+                    m² powierzchni produkcyjnej i obsługę klientów w ponad 30
+                    krajach.
+                    <a href="https://rotometal.pl/en/rotometal-tooling-precision-in-24-hours-" rel="noopener" target="_blank">Strona firmy ↗</a>
+</div>
+</details>
+</div>
+<p>
+                  Zaprojektowałem i wdrożyłem RotoPlus — system ERP dla ponad 100 użytkowników, łączący produkcję, magazyn, logistykę i handel. Przekładałem potrzeby zespołów na logikę narzędzi do planowania zleceń, zarządzania zapasami, kalkulacji kosztów i identyfikowania wąskich gardeł.
+                </p>
+</div>
+</div>
+<div class="role">
+<div class="period">06.2021 - 12.2022</div>
+<div>
+<h3>Inżynier R&amp;D / Konstruktor</h3>
+<div class="employer-heading"><div class="company">Rotometal · Świebodzin</div>
+<details class="employer">
+<summary>Dowiedz się więcej o pracodawcy</summary>
+<div class="employer-info">
+<b>Rotometal</b> — producent precyzyjnych narzędzi
+                    rotacyjnych dla branży poligraficznej i przetwórczej. Firma
+                    powstała w 2006 r.; deklaruje ponad 170 specjalistów, 12 500
+                    m² powierzchni produkcyjnej i obsługę klientów w ponad 30
+                    krajach.
+                    <a href="https://rotometal.pl/en/rotometal-tooling-precision-in-24-hours-" rel="noopener" target="_blank">Strona firmy ↗</a>
+</div>
+</details>
+</div>
+<p>
+                  Rozwijałem konstrukcje narzędzi rotacyjnych — od koncepcji i doboru materiałów po dokumentację 2D/3D oraz wdrożenie do produkcji. Pracowałem nad rozwiązaniami łączącymi wymagania użytkowe produktu z kosztem i możliwościami jego wytwarzania.
+                </p>
+</div>
+</div>
+<div class="role">
+<div class="period">03.2017 - 06.2021</div>
+<div>
+<h3>Konstruktor / Młodszy Konstruktor</h3>
+<div class="employer-heading"><div class="company">MB-PNEUMATYKA · Sulechów</div>
+<details class="employer">
+<summary>Dowiedz się więcej o pracodawcy</summary>
+<div class="employer-info">
+<b>MB Pneumatyka</b> — producent złączy pneumatycznych do
+                    układów hamulcowych i zawieszeń pojazdów użytkowych. Firma
+                    działa w Sulechowie, a jej produkty trafiają na rynki
+                    międzynarodowe. Publicznie raportowane przychody za 2025 r.:
+                    ok. 35,6 mln zł.
+                    <a href="https://mbpneumatyka.com/" rel="noopener" target="_blank">Strona firmy ↗</a>
+</div>
+</details>
+</div>
+<p>
+                  Projektowałem komponenty pneumatyczne i przygotowywałem je do produkcji seryjnej. Rozwijałem się od młodszego konstruktora do samodzielnej pracy konstrukcyjnej, obejmującej wdrożenia nowych rozwiązań oraz automatyzację montażu.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">07 / warsztat</div>
+<h2>Narzędzia i kompetencje.</h2>
+</div>
+<p>
+              Inżynierskie podejście połączone z komunikacją potrzebną do
+              wprowadzania zmiany w organizacji.
+            </p>
+</div>
+<div class="skills">
+<div class="skill">Lean Manufacturing i 5S</div>
+<div class="skill">Lean Six Sigma Green Belt</div>
+<div class="skill">Kalkulacja kosztu wytworzenia</div>
+<div class="skill">Planowanie i zapasy</div>
+<div class="skill">Rysunek techniczny 2D/3D</div>
+<div class="skill">Autodesk Inventor</div>
+<div class="skill">Automatyzacja i uruchomienia</div>
+<div class="skill">Wdrażanie produktów i portfolio</div>
+</div>
+</div>
+</section>
+
+</main>
+<dialog aria-label="Powiększenie zdjęcia" class="photo-dialog" id="photo-dialog"><button class="photo-close" type="button">Zamknij ×</button><img alt=""/></dialog>
+<footer id="kontakt">
+<div class="wrap contact">
+<div>
+<div class="kicker" style="color: #43c7ad">Kontakt</div>
+<h2>Porozmawiajmy o tym, co można usprawnić.</h2>
+<p>Zielona Góra, Polska</p>
+</div>
+<div class="contact-links">
+<a data-track="email" href="mailto:jryba.94@gmail.com">jryba.94@gmail.com</a><a data-track="phone" href="tel:+48534121777">+48 534 121 777</a><a data-track="linkedin" href="https://www.linkedin.com/in/jakub-ryba-9045101a2" rel="noopener" target="_blank">LinkedIn ↗</a><span>Jakub Ryba · Inżynier Produkcji</span>
+</div>
+</div>
+</footer>
+<script>
+      (() => {
+        const row = document.querySelector('.gallery-viewport'), dialog = document.querySelector('#photo-dialog');
+        const track = row.querySelector('.gallery-track'), group = track.querySelector('.gallery-group');
+        const clone = group.cloneNode(true);
+        clone.setAttribute('aria-hidden','true');
+        clone.querySelectorAll('button').forEach(button => button.tabIndex = -1);
+        track.append(clone);
+        const close = () => dialog.close();
+        row.addEventListener('click', event => {
+          const button = event.target.closest('[data-photo]'); if(!button) return;
+          const img = dialog.querySelector('img'); img.src = button.dataset.photo; img.alt = button.querySelector('img').alt;
+          dialog.showModal(); track.classList.add('paused'); document.body.style.overflow = 'hidden';
+        });
+        dialog.querySelector('button').onclick = close;
+        dialog.addEventListener('click', event => { if(event.target === dialog) { const rect=dialog.getBoundingClientRect(); if(event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom) close(); } });
+        dialog.addEventListener('close', () => { track.classList.remove('paused'); document.body.style.overflow = ''; });
+      })();
+    </script>
+<script>
+      (() => {
+        const makeId = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        const visitorKey = "jr_portfolio_visitor";
+        let visitorId = localStorage.getItem(visitorKey);
+        if (!visitorId) {
+          visitorId = localStorage.getItem("jr_portfolio_session") || makeId();
+          localStorage.setItem(visitorKey, visitorId);
+        }
+        const visitKey = "jr_portfolio_visit_v2";
+        const timeout = 30 * 60 * 1000;
+        let sessionId;
+        const refreshVisit = () => {
+          let visit;
+          try { visit = JSON.parse(localStorage.getItem(visitKey)); } catch {}
+          if (!visit || typeof visit.id !== "string" || !Number.isFinite(visit.lastSeen) || Date.now() - visit.lastSeen >= timeout) {
+            visit = { id: makeId(), lastSeen: Date.now() };
+          }
+          if (sessionId && sessionId !== visit.id) {
+            maxScroll = 0; activeSeconds = 0; lastSent = 0;
+          }
+          sessionId = visit.id;
+          visit.lastSeen = Date.now();
+          localStorage.setItem(visitKey, JSON.stringify(visit));
+        };
+        let maxScroll = 0;
+        let activeSeconds = 0;
+        let lastActive = Date.now();
+        let lastSent = 0;
+
+        const send = (event, extra = {}) => {
+          refreshVisit();
+          const body = JSON.stringify({
+            event,
+            sessionId,
+            visitorId,
+            pathname: location.pathname,
+            scrollDepth: maxScroll,
+            activeSeconds,
+            referrer: document.referrer,
+            ...extra,
+          });
+          fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true }).catch(() => {});
+        };
+        const updateActivity = () => {
+          if (!document.hidden && Date.now() - lastActive < 30000) activeSeconds += 1;
+          if (activeSeconds - lastSent >= 20) { lastSent = activeSeconds; send("engagement"); }
+        };
+        const activity = () => { lastActive = Date.now(); };
+        const scroll = () => {
+          const max = document.documentElement.scrollHeight - innerHeight;
+          if (max > 0) maxScroll = Math.max(maxScroll, Math.round((scrollY / max) * 100));
+        };
+
+        send("page_view");
+        scroll();
+        addEventListener("scroll", scroll, { passive: true });
+        ["pointerdown", "keydown", "touchstart"].forEach((name) => addEventListener(name, activity, { passive: true }));
+        setInterval(updateActivity, 1000);
+        addEventListener("visibilitychange", () => { if (document.hidden) send("engagement"); });
+        addEventListener("pagehide", () => send("engagement"));
+        document.querySelectorAll("[data-track]").forEach((link) => link.addEventListener("click", () => {
+          const target = link.dataset.track;
+          send(target === "cv" ? "cv_download" : "outbound_click", { target });
+        }));
+        document.querySelectorAll("details.case").forEach((item) => {
+          let readTimer;
+          item.addEventListener("toggle", () => {
+            clearTimeout(readTimer);
+            const number = item.querySelector(".num")?.textContent.trim() || "Projekt";
+            const title = item.querySelector("h3")?.textContent.trim() || "";
+            const project = `${number} — ${title}`.slice(0, 140);
+            if (!item.open) return;
+            send("project_expand", { target: "project", project });
+            readTimer = setTimeout(() => {
+              if (item.open && !document.hidden) send("project_read", { target: "project", project });
+            }, 7000);
+          });
+        });
+      })();
+    </script>
+<script>const menu = document.querySelector('.menu-toggle'); const links = document.querySelector('.navlinks'); menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Zamknij −':'Menu +'}); links.addEventListener('click',e=>{if(e.target.closest('a')){links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu +'}});</script></body>
+</html>
