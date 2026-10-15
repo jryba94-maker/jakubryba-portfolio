@@ -30,7 +30,8 @@ module.exports = async (req, res) => {
     const target = allowedTargets.has(body.target) ? body.target : null;
     const referrer = String(body.referrer || "").replace(/^https?:\/\//, "").split("/")[0].slice(0, 120);
     const project = target === "project" ? String(body.project || "").slice(0, 140) : "";
-    const metadata = { ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
+    const visitorId = /^[a-z0-9-]{20,80}$/i.test(String(body.visitorId || "")) ? String(body.visitorId) : sessionId;
+    const metadata = { visitorId, ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
 
     await ensureSchema();
     const sql = database();
