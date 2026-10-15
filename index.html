@@ -595,6 +595,70 @@
           margin-top: 18px;
         }
       }
+
+      /* Galeria realizacji — jeden, płynnie przesuwający się rząd. */
+      .project-gallery {
+        overflow: hidden;
+        padding-bottom: 74px;
+      }
+      .gallery-viewport {
+        width: 100%;
+        overflow: hidden;
+        padding: 2px 0 12px;
+        mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+      }
+      .gallery-track {
+        display: flex;
+        width: max-content;
+        gap: 14px;
+        animation: gallery-slide 62s linear infinite;
+        will-change: transform;
+      }
+      .gallery-viewport:hover .gallery-track,
+      .gallery-viewport:focus-within .gallery-track {
+        animation-play-state: paused;
+      }
+      .gallery-card {
+        position: relative;
+        flex: 0 0 330px;
+        aspect-ratio: 4 / 3;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: #dbe7ee;
+      }
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform .35s ease;
+      }
+      .gallery-card:hover img { transform: scale(1.045); }
+      .gallery-card figcaption {
+        position: absolute;
+        inset: auto 0 0;
+        padding: 28px 18px 15px;
+        color: #fff;
+        font-weight: 750;
+        font-size: 13px;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        background: linear-gradient(transparent, rgba(14,31,51,.86));
+      }
+      @keyframes gallery-slide {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
+      @media (max-width: 760px) {
+        .project-gallery { padding-bottom: 52px; }
+        .gallery-card { flex-basis: 250px; }
+        .gallery-track { gap: 10px; animation-duration: 45s; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .gallery-viewport { overflow-x: auto; mask-image: none; }
+        .gallery-track { animation: none; width: max-content; padding: 0 16px; }
+      }
     </style>
   </head>
   <body>
@@ -1051,6 +1115,118 @@
             <div class="skill">Autodesk Inventor</div>
             <div class="skill">Automatyzacja i uruchomienia</div>
             <div class="skill">Wdrażanie produktów i portfolio</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="project-gallery">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker">07 / galeria</div>
+              <h2>Realizacje w praktyce.</h2>
+            </div>
+            <p>Wybrane kadry z projektów — od detalu konstrukcyjnego, przez stanowisko produkcyjne, po gotowe wdrożenie.</p>
+          </div>
+        </div>
+        <div class="gallery-viewport" tabindex="0" aria-label="Przewijana galeria realizacji. Zatrzymaj ruch po najechaniu kursorem.">
+          <div class="gallery-track">
+            <figure class="gallery-card">
+              <img src="/projekty/IMG_20190710_134208(1).jpg" alt="Realizacje produkcyjne" loading="lazy" />
+              <figcaption>Realizacje produkcyjne</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20221228_130802(1).jpg" alt="Rozwój produktu" loading="lazy" />
+              <figcaption>Rozwój produktu</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241104_110347(1).jpg" alt="Wdrożenie na hali" loading="lazy" />
+              <figcaption>Wdrożenie na hali</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241125_081615(1).jpg" alt="Optymalizacja procesu" loading="lazy" />
+              <figcaption>Optymalizacja procesu</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241126_105710(1).jpg" alt="Technologia i jakość" loading="lazy" />
+              <figcaption>Technologia i jakość</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241129_100935(1).jpg" alt="Produkcja seryjna" loading="lazy" />
+              <figcaption>Produkcja seryjna</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230309_145137(1).jpg" alt="Projekt inżynierski" loading="lazy" />
+              <figcaption>Projekt inżynierski</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230628_095720(1).jpg" alt="Automatyzacja" loading="lazy" />
+              <figcaption>Automatyzacja</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230706_124953(1).jpg" alt="Konstrukcja i wdrożenie" loading="lazy" />
+              <figcaption>Konstrukcja i wdrożenie</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230720_125041(1).jpg" alt="Praca nad detalem" loading="lazy" />
+              <figcaption>Praca nad detalem</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230720_143243(1).jpg" alt="Efekt wdrożenia" loading="lazy" />
+              <figcaption>Efekt wdrożenia</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241209_095359(1).jpg" alt="Usprawnienia w praktyce" loading="lazy" />
+              <figcaption>Usprawnienia w praktyce</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/IMG_20190710_134208(1).jpg" alt="Realizacje produkcyjne" loading="lazy" />
+              <figcaption>Realizacje produkcyjne</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20221228_130802(1).jpg" alt="Rozwój produktu" loading="lazy" />
+              <figcaption>Rozwój produktu</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241104_110347(1).jpg" alt="Wdrożenie na hali" loading="lazy" />
+              <figcaption>Wdrożenie na hali</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241125_081615(1).jpg" alt="Optymalizacja procesu" loading="lazy" />
+              <figcaption>Optymalizacja procesu</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241126_105710(1).jpg" alt="Technologia i jakość" loading="lazy" />
+              <figcaption>Technologia i jakość</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241129_100935(1).jpg" alt="Produkcja seryjna" loading="lazy" />
+              <figcaption>Produkcja seryjna</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230309_145137(1).jpg" alt="Projekt inżynierski" loading="lazy" />
+              <figcaption>Projekt inżynierski</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230628_095720(1).jpg" alt="Automatyzacja" loading="lazy" />
+              <figcaption>Automatyzacja</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230706_124953(1).jpg" alt="Konstrukcja i wdrożenie" loading="lazy" />
+              <figcaption>Konstrukcja i wdrożenie</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230720_125041(1).jpg" alt="Praca nad detalem" loading="lazy" />
+              <figcaption>Praca nad detalem</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20230720_143243(1).jpg" alt="Efekt wdrożenia" loading="lazy" />
+              <figcaption>Efekt wdrożenia</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/projekty/20241209_095359(1).jpg" alt="Usprawnienia w praktyce" loading="lazy" />
+              <figcaption>Usprawnienia w praktyce</figcaption>
+            </figure>
           </div>
         </div>
       </section>
