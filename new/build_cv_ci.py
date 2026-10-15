@@ -36,7 +36,7 @@ role('01.2023 - 04.2025','Specjalista ds. systemów planowania i zarządzania','
 bullet('Architekt funkcjonalny i wdrożeniowiec Roto+, ERP dla ponad 100 użytkowników. Projektowałem logikę procesów, ustalałem priorytety i koordynowałem pracę grupy programistów. Osobiście szkoliłem użytkowników i wspierałem uruchomienie systemu.')
 bullet('Integracja statusów zleceń, obciążenia gniazd, wykorzystania maszyn, magazynu i danych zarządczych. System używany w organizacji od ponad 3 lat; blisko 2-godzinne codzienne spotkania ograniczono do dwóch spotkań po 30 minut tygodniowo.')
 bullet('Systemy kalkulacji kosztu wytworzenia, koordynacja zapasów i wydań materiałowych. Wykorzystanie resztek stali nierdzewnej do kół zębatych ograniczyło zużycie nowej stali narzędziowej.')
-bullet('Wdrożenie rozliczania konstruktorów oraz premiowania pracy na więcej niż jednej maszynie.')
+bullet('Wdrożenie rozliczania konstruktorów oraz premiowania pracy na więcej niż jednej maszynie. Wybrani pracownicy osiągali w tym modelu 186% wydajności.')
 story.append(PageBreak())
 role('06.2021 - 12.2022','Inżynier R&amp;D / Konstruktor','Rotometal | Świebodzin')
 bullet('Prowadzenie cylindrów magnetycznych z aluminium i RotoSleeve Hybrid od koncepcji i konstrukcji, przez koszty, wdrożenie i komercjalizację, po prezentację handlowi oraz klientom końcowym.')
