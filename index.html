@@ -596,6 +596,14 @@
         }
       }
  
+
+      .project-gallery{overflow:hidden}.gallery-toolbar{display:flex;gap:8px;margin-bottom:16px}.gallery-toolbar button,.photo-close{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:99px;padding:10px 18px;background:white;color:var(--ink)}
+      .gallery-viewport{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 16px;scrollbar-color:var(--blue) var(--line)}
+      .gallery-card{position:relative;flex:0 0 330px;scroll-snap-align:start;aspect-ratio:4/3;padding:0;border:1px solid var(--line);background:#dbe7ee;overflow:hidden;cursor:zoom-in;text-align:left}
+      .gallery-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.gallery-card:hover img{transform:scale(1.04)}
+      .gallery-card span{position:absolute;inset:auto 0 0;padding:35px 16px 15px;background:linear-gradient(transparent,rgba(14,31,51,.92));color:white;font:700 13px/1.4 system-ui}
+      .photo-dialog{max-width:94vw;max-height:94vh;padding:14px;border:0;background:var(--ink);color:white;border-radius:12px}.photo-dialog::backdrop{background:rgba(0,0,0,.85)}.photo-dialog img{display:block;max-width:86vw;max-height:75vh;object-fit:contain;margin:auto}.photo-close{display:block;margin:0 0 12px auto}.photo-caption{padding:12px 4px 0;color:white}
+      @media(max-width:760px){.gallery-card{flex-basis:280px}}
     </style>
   </head>
   <body>
@@ -1047,7 +1055,24 @@
         </div>
       </section>
 
+      <section id="galeria" class="project-gallery"><div class="wrap"><div class="section-head"><div><div class="kicker">07 / galeria</div><h2>Realizacje w praktyce.</h2></div><p>Od konstrukcji i stanowisk montażowych po narzędzia oraz systemy wspierające produkcję. Przewiń zdjęcia i kliknij wybrane, aby zobaczyć szczegóły.</p></div><div class="gallery-toolbar"><button type="button" id="gallery-prev" aria-label="Poprzednie zdjęcia">←</button><button type="button" id="gallery-next" aria-label="Następne zdjęcia">→</button></div><div class="gallery-viewport" aria-label="Zdjęcia realizacji"><button class="gallery-card" type="button" data-photo="/projekty/projekt-01.webp" aria-label="Powiększ: Narzędzia rotacyjne"><img src="/projekty/projekt-01.webp" alt="Narzędzia rotacyjne" loading="lazy" width="1000" height="750"><span>Narzędzia rotacyjne</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-02.webp" aria-label="Powiększ: Identyfikacja produktu"><img src="/projekty/projekt-02.webp" alt="Identyfikacja produktu" loading="lazy" width="1000" height="750"><span>Identyfikacja produktu</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-03.webp" aria-label="Powiększ: Sterowanie stanowiskiem montażowym"><img src="/projekty/projekt-03.webp" alt="Sterowanie stanowiskiem montażowym" loading="lazy" width="1000" height="750"><span>Sterowanie stanowiskiem montażowym</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-04.webp" aria-label="Powiększ: Obróbka elementu"><img src="/projekty/projekt-04.webp" alt="Obróbka elementu" loading="lazy" width="1000" height="750"><span>Obróbka elementu</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-05.webp" aria-label="Powiększ: Montaż komponentów pneumatycznych"><img src="/projekty/projekt-05.webp" alt="Montaż komponentów pneumatycznych" loading="lazy" width="1000" height="750"><span>Montaż komponentów pneumatycznych</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-06.webp" aria-label="Powiększ: Organizacja materiałów"><img src="/projekty/projekt-06.webp" alt="Organizacja materiałów" loading="lazy" width="1000" height="750"><span>Organizacja materiałów</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-07.webp" aria-label="Powiększ: Planowanie dostępne na telefonie"><img src="/projekty/projekt-07.webp" alt="Planowanie dostępne na telefonie" loading="lazy" width="1000" height="750"><span>Planowanie dostępne na telefonie</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-08.webp" aria-label="Powiększ: Stanowisko montażowe"><img src="/projekty/projekt-08.webp" alt="Stanowisko montażowe" loading="lazy" width="1000" height="750"><span>Stanowisko montażowe</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-09.webp" aria-label="Powiększ: Dane do planowania produkcji"><img src="/projekty/projekt-09.webp" alt="Dane do planowania produkcji" loading="lazy" width="1000" height="750"><span>Dane do planowania produkcji</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-10.webp" aria-label="Powiększ: Blok rozdzielacza pneumatycznego"><img src="/projekty/projekt-10.webp" alt="Blok rozdzielacza pneumatycznego" loading="lazy" width="1000" height="750"><span>Blok rozdzielacza pneumatycznego</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-11.webp" aria-label="Powiększ: System wspierający produkcję"><img src="/projekty/projekt-11.webp" alt="System wspierający produkcję" loading="lazy" width="1000" height="750"><span>System wspierający produkcję</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-12.webp" aria-label="Powiększ: Komponent pneumatyczny"><img src="/projekty/projekt-12.webp" alt="Komponent pneumatyczny" loading="lazy" width="1000" height="750"><span>Komponent pneumatyczny</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-13.webp" aria-label="Powiększ: Automatyzacja montażu"><img src="/projekty/projekt-13.webp" alt="Automatyzacja montażu" loading="lazy" width="1000" height="750"><span>Automatyzacja montażu</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-14.webp" aria-label="Powiększ: Konstrukcje narzędzi rotacyjnych"><img src="/projekty/projekt-14.webp" alt="Konstrukcje narzędzi rotacyjnych" loading="lazy" width="1000" height="750"><span>Konstrukcje narzędzi rotacyjnych</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-15.webp" aria-label="Powiększ: Identyfikacja zleceń"><img src="/projekty/projekt-15.webp" alt="Identyfikacja zleceń" loading="lazy" width="1000" height="750"><span>Identyfikacja zleceń</span></button>
+<button class="gallery-card" type="button" data-photo="/projekty/projekt-16.webp" aria-label="Powiększ: Gotowe narzędzie rotacyjne"><img src="/projekty/projekt-16.webp" alt="Gotowe narzędzie rotacyjne" loading="lazy" width="1000" height="750"><span>Gotowe narzędzie rotacyjne</span></button></div></div></section>
     </main>
+    <dialog class="photo-dialog" id="photo-dialog" aria-label="Powiększenie zdjęcia"><button class="photo-close" type="button">Zamknij ×</button><img alt=""><p class="photo-caption"></p></dialog>
     <footer id="kontakt">
       <div class="wrap contact">
         <div>
@@ -1063,6 +1088,21 @@
         </div>
       </div>
     </footer>
+    <script>
+      (() => {
+        const row = document.querySelector('.gallery-viewport'), dialog = document.querySelector('#photo-dialog');
+        const close = () => { dialog.close(); document.body.style.overflow = ''; };
+        document.querySelector('#gallery-prev').onclick = () => row.scrollBy({left:-346,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+        document.querySelector('#gallery-next').onclick = () => row.scrollBy({left:346,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+        row.querySelectorAll('[data-photo]').forEach(button => button.onclick = () => {
+          const img = dialog.querySelector('img'); img.src = button.dataset.photo; img.alt = button.querySelector('img').alt;
+          dialog.querySelector('p').textContent = img.alt; dialog.showModal(); document.body.style.overflow = 'hidden';
+        });
+        dialog.querySelector('button').onclick = close;
+        dialog.addEventListener('click', event => { if(event.target === dialog) { const rect=dialog.getBoundingClientRect(); if(event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom) close(); } });
+        dialog.addEventListener('close', () => { document.body.style.overflow = ''; });
+      })();
+    </script>
     <script>
       (() => {
         const makeId = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
