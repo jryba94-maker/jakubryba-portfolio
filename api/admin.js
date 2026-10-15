@@ -49,6 +49,7 @@ module.exports = async (req, res) => {
       )
       SELECT
         (SELECT COUNT(*) FROM sessions)::int AS visits,
+        (SELECT COUNT(DISTINCT COALESCE(metadata->>\'visitorId\', session_id)) FROM portfolio_events WHERE created_at >= ${since})::int AS unique_visitors,
         (SELECT COUNT(*) FROM portfolio_events WHERE created_at >= ${since} AND event_type = 'page_view')::int AS page_views,
         (SELECT COUNT(*) FROM portfolio_events WHERE created_at >= ${since} AND event_type = 'cv_download')::int AS cv_downloads,
         COALESCE((SELECT ROUND(AVG(active_seconds)) FROM sessions), 0)::int AS avg_active_seconds,
@@ -74,7 +75,7 @@ module.exports = async (req, res) => {
       SELECT metadata->>'project' AS project,
              COUNT(*) FILTER (WHERE event_type = 'project_expand')::int AS expands,
              COUNT(*) FILTER (WHERE event_type = 'project_read')::int AS reads,
-             COUNT(DISTINCT session_id) FILTER (WHERE event_type = 'project_read')::int AS readers
+             COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FILTER (WHERE event_type = 'project_read')::int AS readers
       FROM portfolio_events
       WHERE created_at >= ${since}
         AND event_type IN ('project_expand', 'project_read')
