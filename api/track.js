@@ -9,8 +9,12 @@ function isOwnOrigin(origin) {
 }
 
 module.exports = async (req, res) => {
+  res.setHeader("Cache-Control", "no-store");
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   if (!isOwnOrigin(req.headers.origin)) return res.status(403).json({ error: "Invalid origin" });
+
+  const owner = (req.headers.cookie || "").split(";").some((cookie) => cookie.trim() === "portfolio_owner=1");
+  if (owner) return res.status(204).end();
 
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
