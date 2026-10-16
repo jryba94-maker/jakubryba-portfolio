@@ -1,4 +1,5 @@
 const { database, ensureSchema } = require("./_db");
+const { notifyVisit } = require("./_visit-alert");
 
 const allowedEvents = new Set(["page_view", "engagement", "cv_download", "outbound_click", "project_expand", "project_read", "resource_click"]);
 const allowedTargets = new Set(["cv", "email", "phone", "linkedin", "project", "resource"]);
@@ -52,6 +53,8 @@ module.exports = async (req, res) => {
     const sql = database();
     await sql`INSERT INTO portfolio_events (session_id, event_type, pathname, metadata, scroll_depth, active_seconds)
       VALUES (${sessionId}, ${event}, ${pathname}, ${JSON.stringify(metadata)}::jsonb, ${scroll}, ${active}) ON CONFLICT DO NOTHING`;
+    try { await notifyVisit({ sessionId, pathname, referrer }); }
+    catch { console.error('Portfolio visit notification unavailable; analytics event retained'); }
     return res.status(204).end();
   } catch (error) {
     console.error("Portfolio tracking error", error);
