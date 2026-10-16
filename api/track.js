@@ -16,6 +16,9 @@ module.exports = async (req, res) => {
   const owner = (req.headers.cookie || "").split(";").some((cookie) => cookie.trim() === "portfolio_owner=1");
   if (owner) return res.status(204).end();
 
+  const agent = req.headers["user-agent"] || "";
+  if (/bot|crawler|spider|headless|lighthouse|python-urllib|curl\//i.test(agent)) return res.status(204).end();
+
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
     const event = String(body.event || "");
@@ -31,12 +34,15 @@ module.exports = async (req, res) => {
     const referrer = String(body.referrer || "").replace(/^https?:\/\//, "").split("/")[0].slice(0, 120);
     const project = target === "project" ? String(body.project || "").slice(0, 140) : "";
     const visitorId = /^[a-z0-9-]{20,80}$/i.test(String(body.visitorId || "")) ? String(body.visitorId) : sessionId;
-    const metadata = { visitorId, ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
+    const validId = (value) => /^[a-z0-9-]{20,80}$/i.test(String(value || ""));
+    const eventId = validId(body.eventId) ? String(body.eventId) : null;
+    const pageId = validId(body.pageId) ? String(body.pageId) : null;
+    const metadata = { visitorId, ...(eventId ? { eventId } : {}), ...(pageId ? { pageId } : {}), ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
 
     await ensureSchema();
     const sql = database();
     await sql`INSERT INTO portfolio_events (session_id, event_type, pathname, metadata, scroll_depth, active_seconds)
-      VALUES (${sessionId}, ${event}, ${pathname}, ${JSON.stringify(metadata)}::jsonb, ${scroll}, ${active})`;
+      VALUES (${sessionId}, ${event}, ${pathname}, ${JSON.stringify(metadata)}::jsonb, ${scroll}, ${active}) ON CONFLICT DO NOTHING`;
     return res.status(204).end();
   } catch (error) {
     console.error("Portfolio tracking error", error);

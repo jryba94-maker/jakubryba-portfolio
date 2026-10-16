@@ -1,5 +1,7 @@
 (() => {
   'use strict';
+  if (window.__jrPortfolioInitialized) return;
+  window.__jrPortfolioInitialized = true;
   const $ = (selector) => document.querySelector(selector);
   const header = $('.site-header');
   const menu = $('.menu-toggle');
@@ -92,6 +94,8 @@
     set(key, value) { try { localStorage.setItem(key, value); } catch {} }
   };
   const makeId = () => window.crypto?.randomUUID ? window.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`;
+  if (storage.get('jr_portfolio_owner') === '1' || navigator.webdriver) return;
+  const pageId = makeId();
   const visitorKey = 'jr_portfolio_visitor';
   const visitKey = 'jr_portfolio_visit_v2';
   const visitorId = storage.get(visitorKey) || storage.get('jr_portfolio_session') || makeId();
@@ -117,7 +121,8 @@
   }
   function send(event, extra = {}) {
     refreshVisit();
-    const body = JSON.stringify({ event, sessionId, visitorId, pathname: location.pathname, scrollDepth: maxScroll, activeSeconds: Math.floor(activeSeconds), referrer: document.referrer, ...extra });
+    updateScroll();
+    const body = JSON.stringify({ eventId: makeId(), pageId, event, sessionId, visitorId, pathname: location.pathname, scrollDepth: maxScroll, activeSeconds: Math.floor(activeSeconds), referrer: document.referrer, ...extra });
     try { window.fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {}); } catch {}
   }
   function updateScroll() {
@@ -163,6 +168,7 @@
   document.addEventListener('visibilitychange', () => {
     lastTick = Date.now();
     if (document.hidden) send('engagement');
+    else lastActive = Date.now();
   });
   window.addEventListener('pagehide', () => send('engagement'));
   window.setInterval(tick, 1000);
