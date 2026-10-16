@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
       FROM pages GROUP BY session_id
     ) `;
     const query = (text) => sql.query(source + text, [days, page]);
-    const [[summary], daily, recent, projects, visits, links] = await Promise.all([
+    const [[summary], daily, recent, projects, visits, links, alerts] = await Promise.all([
       query(`SELECT
         (SELECT COUNT(*) FROM sessions)::int AS visits,
         (SELECT COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FROM events)::int AS unique_visitors,
@@ -100,9 +100,13 @@ module.exports = async (req, res) => {
         COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id))::int AS visitors,
         MAX(created_at) AS last_clicked
         FROM events WHERE event_type = 'resource_click' AND metadata->>'linkUrl' IS NOT NULL
-        GROUP BY metadata->>'linkUrl' ORDER BY clicks DESC, last_clicked DESC`)
+        GROUP BY metadata->>'linkUrl' ORDER BY clicks DESC, last_clicked DESC`),
+      query(`SELECT COUNT(*) FILTER (WHERE status = 'sent')::int AS sent,
+        COUNT(*) FILTER (WHERE status = 'failed')::int AS failed,
+        COUNT(*) FILTER (WHERE status = 'limited')::int AS limited
+        FROM portfolio_visit_alerts WHERE created_at >= date_trunc('day', NOW() AT TIME ZONE 'Europe/Warsaw') AT TIME ZONE 'Europe/Warsaw'`)
     ]);
-    return res.status(200).json({ days, page, summary, daily, recent, projects, visits, links, generatedAt: new Date().toISOString() });
+    return res.status(200).json({ days, page, summary, daily, recent, projects, visits, links, notifications: { enabled: process.env.PORTFOLIO_VISIT_ALERTS === 'true' && !!process.env.RESEND_API_KEY && !!process.env.PORTFOLIO_ALERT_FROM, recipient: 'jryba.94@gmail.com', dailyLimit: 60, ...(alerts[0] || {}) }, generatedAt: new Date().toISOString() });
   } catch (error) {
     console.error("Portfolio admin error", error);
     return res.status(500).json({ error: "Nie udało się pobrać analityki" });

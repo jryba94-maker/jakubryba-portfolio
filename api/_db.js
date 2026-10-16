@@ -23,6 +23,12 @@ async function ensureSchema() {
       await sql`CREATE INDEX IF NOT EXISTS portfolio_events_created_at_idx ON portfolio_events (created_at DESC)`;
       await sql`CREATE INDEX IF NOT EXISTS portfolio_events_session_idx ON portfolio_events (session_id, created_at DESC)`;
       await sql`CREATE UNIQUE INDEX IF NOT EXISTS portfolio_events_event_id_idx ON portfolio_events ((metadata->>'eventId')) WHERE metadata ? 'eventId'`;
+      await sql`CREATE TABLE IF NOT EXISTS portfolio_visit_alerts (
+        session_id TEXT PRIMARY KEY, pathname TEXT NOT NULL, referrer TEXT NOT NULL DEFAULT '',
+        status TEXT NOT NULL DEFAULT 'pending', attempts INTEGER NOT NULL DEFAULT 1,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), last_attempt TIMESTAMPTZ NOT NULL DEFAULT NOW(), sent_at TIMESTAMPTZ
+      )`;
+      await sql`CREATE TABLE IF NOT EXISTS portfolio_alert_limits (day DATE PRIMARY KEY, used INTEGER NOT NULL DEFAULT 0)`;
     })();
   }
   return schemaPromise;
