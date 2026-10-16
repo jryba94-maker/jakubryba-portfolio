@@ -172,6 +172,22 @@
   });
   window.addEventListener('pagehide', () => send('engagement'));
   window.setInterval(tick, 1000);
+  // Track destination clicks without collecting URL queries or fragments.
+  function trackResource(event) {
+    if (event.type === 'auxclick' && event.button !== 1) return;
+    const link = event.target.closest('a[href]');
+    if (!link || link.dataset.track) return;
+    let url;
+    try { url = new URL(link.href, location.href); } catch { return; }
+    if (url.protocol !== 'https:' || url.origin === location.origin) return;
+    let label = (link.textContent || url.hostname).replace(/[↗↓]/g, '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    if (url.hostname === 'shop.lug.com.pl') label = 'Sklep LCS';
+    else if (link.closest('.pneumatics')) label = 'Katalog MB Pneumatyka';
+    else if (link.closest('.aluminium')) label = 'Rotometal · ' + label;
+    send('resource_click', { target: 'resource', linkLabel: label || url.hostname, linkUrl: url.origin + url.pathname });
+  }
+  document.addEventListener('click', trackResource);
+  document.addEventListener('auxclick', trackResource);
   document.querySelectorAll('[data-track]').forEach((link) => link.addEventListener('click', () => {
     const target = link.dataset.track;
     send(target === 'cv' ? 'cv_download' : 'outbound_click', { target });

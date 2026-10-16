@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
       FROM pages GROUP BY session_id
     ) `;
     const query = (text) => sql.query(source + text, [days, page]);
-    const [[summary], daily, recent, projects, visits] = await Promise.all([
+    const [[summary], daily, recent, projects, visits, links] = await Promise.all([
       query(`SELECT
         (SELECT COUNT(*) FROM sessions)::int AS visits,
         (SELECT COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FROM events)::int AS unique_visitors,
@@ -91,11 +91,18 @@ module.exports = async (req, res) => {
         COUNT(*) FILTER (WHERE e.event_type = 'cv_download')::int AS downloads,
         COUNT(*) FILTER (WHERE e.event_type = 'project_expand')::int AS expands,
         ARRAY_REMOVE(ARRAY_AGG(DISTINCT e.metadata->>'target') FILTER (WHERE e.event_type = 'outbound_click'), NULL) AS contacts,
+        ARRAY_REMOVE(ARRAY_AGG(DISTINCT e.metadata->>'linkLabel') FILTER (WHERE e.event_type = 'resource_click'), NULL) AS links,
         MAX(s.active_seconds)::int AS active_seconds, MAX(s.scroll_depth)::int AS scroll_depth
         FROM events e JOIN sessions s ON s.session_id = e.session_id
-        GROUP BY e.session_id ORDER BY MAX(e.created_at) DESC LIMIT 30`)
+        GROUP BY e.session_id ORDER BY MAX(e.created_at) DESC LIMIT 30`),
+      query(`SELECT metadata->>'linkUrl' AS url, MAX(metadata->>'linkLabel') AS label,
+        COUNT(*)::int AS clicks, COUNT(DISTINCT session_id)::int AS visits,
+        COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id))::int AS visitors,
+        MAX(created_at) AS last_clicked
+        FROM events WHERE event_type = 'resource_click' AND metadata->>'linkUrl' IS NOT NULL
+        GROUP BY metadata->>'linkUrl' ORDER BY clicks DESC, last_clicked DESC`)
     ]);
-    return res.status(200).json({ days, page, summary, daily, recent, projects, visits, generatedAt: new Date().toISOString() });
+    return res.status(200).json({ days, page, summary, daily, recent, projects, visits, links, generatedAt: new Date().toISOString() });
   } catch (error) {
     console.error("Portfolio admin error", error);
     return res.status(500).json({ error: "Nie udało się pobrać analityki" });

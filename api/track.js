@@ -1,7 +1,7 @@
 const { database, ensureSchema } = require("./_db");
 
-const allowedEvents = new Set(["page_view", "engagement", "cv_download", "outbound_click", "project_expand", "project_read"]);
-const allowedTargets = new Set(["cv", "email", "phone", "linkedin", "project"]);
+const allowedEvents = new Set(["page_view", "engagement", "cv_download", "outbound_click", "project_expand", "project_read", "resource_click"]);
+const allowedTargets = new Set(["cv", "email", "phone", "linkedin", "project", "resource"]);
 
 function isOwnOrigin(origin) {
   if (!origin) return true;
@@ -37,7 +37,16 @@ module.exports = async (req, res) => {
     const validId = (value) => /^[a-z0-9-]{20,80}$/i.test(String(value || ""));
     const eventId = validId(body.eventId) ? String(body.eventId) : null;
     const pageId = validId(body.pageId) ? String(body.pageId) : null;
-    const metadata = { visitorId, ...(eventId ? { eventId } : {}), ...(pageId ? { pageId } : {}), ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
+    let linkUrl = null;
+    if (event === 'resource_click') {
+      try {
+        const url = new URL(String(body.linkUrl || ''));
+        if (target !== 'resource' || url.protocol !== 'https:' || url.href.length > 1000) throw new Error('Invalid link');
+        linkUrl = url.origin + url.pathname;
+      } catch { return res.status(400).json({ error: 'Invalid link' }); }
+    }
+    const linkLabel = linkUrl ? String(body.linkLabel || new URL(linkUrl).hostname).slice(0, 100) : null;
+    const metadata = { visitorId, ...(linkUrl ? { linkUrl, linkLabel } : {}), ...(eventId ? { eventId } : {}), ...(pageId ? { pageId } : {}), ...(target ? { target } : {}), ...(project ? { project } : {}), ...(referrer ? { referrer } : {}) };
 
     await ensureSchema();
     const sql = database();
