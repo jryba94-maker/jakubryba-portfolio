@@ -22,6 +22,7 @@ async function ensureSchema() {
       )`;
       await sql`CREATE INDEX IF NOT EXISTS portfolio_events_created_at_idx ON portfolio_events (created_at DESC)`;
       await sql`CREATE INDEX IF NOT EXISTS portfolio_events_session_idx ON portfolio_events (session_id, created_at DESC)`;
+      await sql`CREATE UNIQUE INDEX IF NOT EXISTS portfolio_events_event_id_idx ON portfolio_events ((metadata->>'eventId')) WHERE metadata ? 'eventId'`;
     })();
   }
   return schemaPromise;

@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     const user = await authenticate(req);
     if (!user) return res.status(403).json({ error: "Brak dostępu" });
     const host = (req.headers.host || "").split(":")[0];
-    const domain = /^(www\\.)?jakubryba\\.pl$/i.test(host) ? "; Domain=jakubryba.pl" : "";
+    const domain = ["jakubryba.pl", "www.jakubryba.pl"].includes(host.toLowerCase()) ? "; Domain=jakubryba.pl" : "";
     res.setHeader("Set-Cookie", `portfolio_owner=1; Path=/; Max-Age=31536000; HttpOnly; Secure; SameSite=Lax${domain}`);
     if (req.method === "DELETE" && req.headers["x-confirm-reset"] !== "all-analytics") {
       return res.status(400).json({ error: "Wymagane potwierdzenie resetu" });
@@ -39,52 +39,63 @@ module.exports = async (req, res) => {
       await sql`DELETE FROM portfolio_events`;
       return res.status(200).json({ ok: true });
     }
-    const { days, since } = rangeFrom(req);
-
-    const [summary] = await sql`
-      WITH sessions AS (
-        SELECT session_id, MAX(scroll_depth) AS scroll_depth, MAX(active_seconds) AS active_seconds
-        FROM portfolio_events WHERE created_at >= ${since}
-        GROUP BY session_id
-      )
-      SELECT
+    const { days } = rangeFrom(req);
+    const page = ["/", "/new"].includes(req.query?.page) ? req.query.page : "all";
+    // All variable values are bound parameters; query text is static.
+    const source = `WITH events AS (
+      SELECT * FROM portfolio_events
+      WHERE created_at >= CASE WHEN $1::int = 1
+        THEN date_trunc('day', NOW() AT TIME ZONE 'Europe/Warsaw') AT TIME ZONE 'Europe/Warsaw'
+        ELSE NOW() - make_interval(days => $1::int) END
+      AND ($2::text = 'all' OR rtrim(pathname, '/') = rtrim($2::text, '/'))
+    ), pages AS (
+      SELECT session_id, COALESCE(metadata->>'pageId', pathname) AS page_id,
+        MAX(active_seconds) AS active_seconds, MAX(scroll_depth) AS scroll_depth
+      FROM events GROUP BY session_id, COALESCE(metadata->>'pageId', pathname)
+    ), sessions AS (
+      SELECT session_id, SUM(active_seconds) AS active_seconds, MAX(scroll_depth) AS scroll_depth
+      FROM pages GROUP BY session_id
+    ) `;
+    const query = (text) => sql.query(source + text, [days, page]);
+    const [[summary], daily, recent, projects, visits] = await Promise.all([
+      query(`SELECT
         (SELECT COUNT(*) FROM sessions)::int AS visits,
-        (SELECT COUNT(DISTINCT COALESCE(metadata->>\'visitorId\', session_id)) FROM portfolio_events WHERE created_at >= ${since})::int AS unique_visitors,
-        (SELECT COUNT(*) FROM portfolio_events WHERE created_at >= ${since} AND event_type = 'page_view')::int AS page_views,
-        (SELECT COUNT(*) FROM portfolio_events WHERE created_at >= ${since} AND event_type = 'cv_download')::int AS cv_downloads,
+        (SELECT COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FROM events)::int AS unique_visitors,
+        (SELECT COUNT(*) FROM events WHERE event_type = 'page_view')::int AS page_views,
+        (SELECT COUNT(*) FROM events WHERE event_type = 'cv_download')::int AS cv_downloads,
         COALESCE((SELECT ROUND(AVG(active_seconds)) FROM sessions), 0)::int AS avg_active_seconds,
         COALESCE((SELECT ROUND(AVG(scroll_depth)) FROM sessions), 0)::int AS avg_scroll,
         (SELECT COUNT(*) FROM sessions WHERE scroll_depth >= 50)::int AS scroll_50,
         (SELECT COUNT(*) FROM sessions WHERE scroll_depth >= 90)::int AS scroll_90,
-        (SELECT COUNT(DISTINCT session_id) FROM portfolio_events WHERE created_at >= ${since} AND event_type = 'outbound_click')::int AS contact_clicks`;
-
-    const daily = await sql`
-      SELECT TO_CHAR(DATE(created_at), 'DD.MM') AS day,
-             COUNT(DISTINCT session_id)::int AS visits,
-             COUNT(*) FILTER (WHERE event_type = 'cv_download')::int AS downloads
-      FROM portfolio_events WHERE created_at >= ${since}
-      GROUP BY DATE(created_at)
-      ORDER BY DATE(created_at)`;
-
-    const recent = await sql`
-      SELECT event_type, pathname, metadata, scroll_depth, active_seconds, created_at
-      FROM portfolio_events WHERE created_at >= ${since}
-      ORDER BY created_at DESC LIMIT 20`;
-
-    const projects = await sql`
-      SELECT metadata->>'project' AS project,
-             COUNT(*) FILTER (WHERE event_type = 'project_expand')::int AS expands,
-             COUNT(*) FILTER (WHERE event_type = 'project_read')::int AS reads,
-             COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FILTER (WHERE event_type = 'project_read')::int AS readers
-      FROM portfolio_events
-      WHERE created_at >= ${since}
-        AND event_type IN ('project_expand', 'project_read')
-        AND metadata->>'project' IS NOT NULL
-        AND metadata->>'project' NOT LIKE '%TEST%'
-      GROUP BY metadata->>'project'
-      ORDER BY reads DESC, expands DESC`;
-
-    return res.status(200).json({ days, summary, daily, recent, projects, generatedAt: new Date().toISOString() });
+        (SELECT COUNT(DISTINCT session_id) FROM events WHERE event_type = 'outbound_click')::int AS contact_clicks,
+        (SELECT COUNT(DISTINCT session_id) FROM events WHERE event_type = 'cv_download')::int AS cv_visits`),
+      query(`SELECT TO_CHAR(created_at AT TIME ZONE 'Europe/Warsaw', 'DD.MM') AS day,
+        COUNT(DISTINCT session_id)::int AS visits,
+        COUNT(*) FILTER (WHERE event_type = 'cv_download')::int AS downloads
+        FROM events GROUP BY (created_at AT TIME ZONE 'Europe/Warsaw')::date,
+        TO_CHAR(created_at AT TIME ZONE 'Europe/Warsaw', 'DD.MM')
+        ORDER BY (created_at AT TIME ZONE 'Europe/Warsaw')::date`),
+      query(`SELECT event_type, pathname, metadata, scroll_depth, active_seconds, created_at
+        FROM events WHERE event_type <> 'engagement' ORDER BY created_at DESC LIMIT 30`),
+      query(`SELECT metadata->>'project' AS project,
+        COUNT(*) FILTER (WHERE event_type = 'project_expand')::int AS expands,
+        COUNT(*) FILTER (WHERE event_type = 'project_read')::int AS reads,
+        COUNT(DISTINCT COALESCE(metadata->>'visitorId', session_id)) FILTER (WHERE event_type = 'project_read')::int AS readers
+        FROM events WHERE event_type IN ('project_expand', 'project_read')
+        AND metadata->>'project' IS NOT NULL AND metadata->>'project' NOT LIKE '%TEST%'
+        GROUP BY metadata->>'project' ORDER BY reads DESC, expands DESC`),
+      query(`SELECT e.session_id, MIN(e.created_at) AS started_at, MAX(e.created_at) AS last_seen,
+        ARRAY_AGG(DISTINCT e.pathname) AS paths,
+        MAX(COALESCE(e.metadata->>'visitorId', e.session_id)) AS visitor_id,
+        COUNT(*) FILTER (WHERE e.event_type = 'page_view')::int AS page_views,
+        COUNT(*) FILTER (WHERE e.event_type = 'cv_download')::int AS downloads,
+        COUNT(*) FILTER (WHERE e.event_type = 'project_expand')::int AS expands,
+        ARRAY_REMOVE(ARRAY_AGG(DISTINCT e.metadata->>'target') FILTER (WHERE e.event_type = 'outbound_click'), NULL) AS contacts,
+        MAX(s.active_seconds)::int AS active_seconds, MAX(s.scroll_depth)::int AS scroll_depth
+        FROM events e JOIN sessions s ON s.session_id = e.session_id
+        GROUP BY e.session_id ORDER BY MAX(e.created_at) DESC LIMIT 30`)
+    ]);
+    return res.status(200).json({ days, page, summary, daily, recent, projects, visits, generatedAt: new Date().toISOString() });
   } catch (error) {
     console.error("Portfolio admin error", error);
     return res.status(500).json({ error: "Nie udało się pobrać analityki" });
